@@ -1,6 +1,5 @@
 from shapely.geometry import Polygon
 from htrflow.utils.geometry import Bbox
-from typing import Self
 
 
 class Line():
@@ -80,7 +79,7 @@ class ODOutput():
     def _get_one(self, idx):
         return dict(bbox=self.bboxes[idx], polygon=self.polygons[idx])
     
-    def __add__(self, other: Self):
+    def __add__(self, other):
         return ODOutput(bboxes=self.bboxes + other.bboxes, polygons=self.polygons + other.polygons)
         
     def __getitem__(self, idx: int | slice):

@@ -2,6 +2,7 @@ from pathlib import Path
 
 import numpy as np
 import xml.etree.ElementTree as ET
+from xml.etree.ElementTree import Element
 from torch.utils.data import Dataset
 from datasets import load_from_disk, concatenate_datasets
 
@@ -60,12 +61,17 @@ class XMLParser():
         transcription = line.find("ns:TextEquiv/ns:Unicode", self.namespaces).text or ""
         return {"region_id": region_id, "line_id": line_id, "bbox": bbox, "polygon": polygon, "transcription": transcription}
 
-    def get_regions(self, xml_path: str | Path):
+    def get_regions(self, xml: str | Path | Element):
         """Parses the PAGE XML and extracts region data."""
-        root = self._parse_xml(xml_path)
+        if isinstance(xml, Path):
+            root = self._parse_xml(xml)
+            img_filename = Path(xml).stem
+        elif isinstance(xml, Element):
+            root = xml
+            img_filename = "img"
+
         if not root:
             return []
-        img_filename = Path(xml_path).stem
 
         regions_data = []
         for region in root.findall(".//ns:TextRegion", self.namespaces):
@@ -83,13 +89,17 @@ class XMLParser():
 
         return regions_data
     
-    def get_lines(self, xml_path):
+    def get_lines(self, xml: Path | Element):
         """Parses the PAGE XML and extracts line data."""
-        root = self._parse_xml(xml_path)
+        if isinstance(xml, Path):
+            root = self._parse_xml(xml)
+            img_filename = Path(xml).stem
+        elif isinstance(xml, Element):
+            root = xml
+            img_filename = "img"
+
         if not root:
             return []
-        
-        img_filename = Path(xml_path).stem
         
         lines_data = []
         for region in root.findall(".//ns:TextRegion", self.namespaces):
@@ -108,8 +118,12 @@ class XMLParser():
         
         return lines_data
     
-    def get_regions_with_lines(self, xml_path):
-        root = self._parse_xml(xml_path)
+    def get_regions_with_lines(self, xml: Path | Element):
+        if isinstance(xml, Path):
+            root = self._parse_xml(xml)
+        elif isinstance(xml, Element):
+            root = xml
+
         if not root:
             return []
 
