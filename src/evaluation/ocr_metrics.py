@@ -1,6 +1,5 @@
 import sys
 from pathlib import Path
-from typing import Self
 
 from htrflow.evaluate import CER, WER, BagOfWords
 
@@ -23,7 +22,7 @@ class OCRMetrics():
     def __str__(self):
         return str(self.dict)
     
-    def __add__(self, other: Self):
+    def __add__(self, other):
         return OCRMetrics(
             self.cer + other.cer, 
             self.wer + other.wer, 
