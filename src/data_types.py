@@ -1,6 +1,7 @@
 from shapely.geometry import Polygon
 from htrflow.utils.geometry import Bbox
-
+from src.file_tools import read_json_file, write_json_file
+from typing import Dict
 
 class Line():
     def __init__(self, bbox: Bbox = None, polygon: Polygon = None, text: str = None):
@@ -10,6 +11,10 @@ class Line():
 
     def __getitem__(self, key):
         return getattr(self, key)
+
+    @classmethod
+    def from_dict(cls, data: Dict):
+        return Line(bbox=Bbox(*data["bbox"]), polygon=Polygon(data["polygon"]), text=data["text"])
 
     @property
     def dict(self):
@@ -21,17 +26,25 @@ class Line():
 
 
 class Region():
-    def __init__(self, bbox: Bbox = None, polygon: Polygon = None, lines: list[Line] = None):
+    def __init__(self, bbox: Bbox = None, polygon: Polygon = None, text: str = None, lines: list[Line] = None):
         self.bbox = bbox
         self.polygon = polygon
         self.lines = lines
-        if lines is not None:
+
+        if text is None and lines is not None:
             self.text = " ".join([line.text for line in lines])
-        else:
+        elif text is None and lines is None:
             self.text = ""
+        elif text is not None:
+            self.text = text
     
     def __getitem__(self, key):
         return getattr(self, key)
+    
+    @classmethod
+    def from_dict(cls, data: Dict):
+        lines = [Line.from_dict(line) for line in data["lines"]]
+        return Region(bbox=Bbox(*data["bbox"]), polygon=Polygon(data["polygon"]), lines=lines)
 
     @property
     def dict(self):
@@ -44,20 +57,40 @@ class Region():
 
 
 class Page():
-    def __init__(self, regions: list[Region] = None, lines: list[Line] = None):
+    def __init__(self, regions: list[Region] = None, lines: list[Line] = None, text: str = None, path: str = None):
         self.regions = regions
         self.lines = lines
-        self.text = " ".join([line.text for line in lines])
+
+        if text is None and lines is not None:
+            self.text = " ".join([line.text for line in lines])
+        elif text is None and lines is None:
+            self.text = ""
+        elif text is not None:
+            self.text = text
+
+        self.path = path
 
     def __getitem__(self, key):
         return getattr(self, key)
     
+    @classmethod
+    def from_json(cls, json_path):
+        data = read_json_file(json_path)
+        regions = [Region.from_dict(region) for region in data["regions"]]
+        lines = [Line.from_dict(line) for line in data["lines"]]
+        path = data["path"]
+        return Page(regions=regions, lines=lines, path=path)
+
+    def to_json(self, json_path):
+        write_json_file(self.dict, json_path)
+
     @property
     def dict(self):
         return dict(
             regions=[region.dict for region in self.regions],
             lines=[line.dict for line in self.lines],
-            text=self.text
+            text=self.text,
+            path=self.path,
         )
 
 
