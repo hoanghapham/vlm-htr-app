@@ -1,7 +1,17 @@
+import sys
+from pathlib import Path
+sys.path.append(str(Path(__file__).parent.parent))
+
+from typing import Dict, Any
+
+from pathlib import Path
 from shapely.geometry import Polygon
 from htrflow.utils.geometry import Bbox
+
 from src.file_tools import read_json_file, write_json_file
-from typing import Dict
+from src.data_processing.utils import XMLParser
+
+
 
 class Line():
     def __init__(self, bbox: Bbox = None, polygon: Polygon = None, text: str = None):
@@ -26,17 +36,11 @@ class Line():
 
 
 class Region():
-    def __init__(self, bbox: Bbox = None, polygon: Polygon = None, text: str = None, lines: list[Line] = None):
+    def __init__(self, bbox: Bbox = None, polygon: Polygon = None, lines: list[Line] = None):
         self.bbox = bbox
         self.polygon = polygon
         self.lines = lines
-
-        if text is None and lines is not None:
-            self.text = " ".join([line.text for line in lines])
-        elif text is None and lines is None:
-            self.text = ""
-        elif text is not None:
-            self.text = text
+        self.text = " ".join([line.text for line in lines]) if lines is not None else ""
     
     def __getitem__(self, key):
         return getattr(self, key)
@@ -57,17 +61,10 @@ class Region():
 
 
 class Page():
-    def __init__(self, regions: list[Region] = None, lines: list[Line] = None, text: str = None, path: str = None):
+    def __init__(self, regions: list[Region] = None, lines: list[Line] = None, path: str = None):
         self.regions = regions
         self.lines = lines
-
-        if text is None and lines is not None:
-            self.text = " ".join([line.text for line in lines])
-        elif text is None and lines is None:
-            self.text = ""
-        elif text is not None:
-            self.text = text
-
+        self.text = " ".join([line.text for line in lines]) if lines is not None else ""
         self.path = path
 
     def __getitem__(self, key):
@@ -167,3 +164,23 @@ class Ratio:
 
     def __str__(self):
         return f"{self.a}/{self.b}"
+
+
+def xml_to_page(xml_file: Any) -> Page:
+    parser = XMLParser()
+    root = parser._parse_xml(xml_file)
+    xml_regions = parser.get_regions(root)
+    xml_lines = parser.get_lines(root)
+
+    page_lines = [Line(bbox=data["bbox"], polygon=data["polygon"], text=data["transcription"]) for data in xml_lines]
+
+    regions = []
+    for xml_region in xml_regions:
+        region_line = xml_region["lines"]
+        lines = [Line(bbox=data["bbox"], polygon=data["polygon"], text=data["transcription"]) for data in region_line]
+        regions.append(Region(bbox=xml_region["bbox"], polygon=xml_region["polygon"], lines=lines))
+    
+    img_path = Path(__file__).parent / "assets" / "examples" / (Path(xml_file.name).stem + ".jpg")
+    page_path = str(img_path.relative_to(Path(__file__).parent.parent))
+    page = Page(regions=regions, lines=page_lines, path=page_path)
+    return page
