@@ -5,6 +5,7 @@
 # Folders
 data/*
 tmp/*
+temp/*
 **/logs/*
 models/*
 __pycache__
