@@ -1,0 +1,490 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15 http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15/pagecontent.xsd">
+    <Metadata>
+        <Creator>prov=University of Rostock/Institute of Mathematics/CITlab|PLANET AI GmbH/Gundram Leifert/gundram.leifert@planet-ai.de:name=Gothenburg_police_reports_1868-1902(htr_id=24263)::::v=2.6.7
+prov=University of Rostock/Institute of Mathematics/CITlab|PLANET AI GmbH/Tobias Gruening/tobias.gruening@planet-ai.de:name=de.uros.citlab.module.baseline2polygon.B2PSeamMultiOriented:v=2.6.7
+prov=University of Rostock/Institute of Mathematics/CITlab|PLANET AI GmbH/Tobias Gruening/tobias.gruening@planet-ai.de:name=/net_tf/LA73_249_0mod360.pb:de.uros.citlab.segmentation.CITlab_LA_ML:v=2.6.7
+Transkribus</Creator>
+        <Created>2021-06-08T15:02:57.057+02:00</Created>
+        <LastChange>2021-10-26T13:09:30.736+02:00</LastChange>
+        <TranskribusMetadata docId="694710" pageId="26266465" pageNr="4" tsid="67096096" status="GT" userId="56756" imgUrl="https://files.transkribus.eu/Get?id=FTQMVZHJMZPPXDDHRYTBLQTJ&amp;fileType=view" xmlUrl="https://files.transkribus.eu/Get?id=HXVGBQTEDGMHGKQCOGSKJWMP" imageId="20188643"/>
+    </Metadata>
+    <Page imageFilename="30003050_00004.tif" imageWidth="5611" imageHeight="4484">
+        <ReadingOrder>
+            <OrderedGroup id="ro_1715763130984" caption="Regions reading order">
+                <RegionRefIndexed index="0" regionRef="TextRegion_1623161653181_1782"/>
+                <RegionRefIndexed index="1" regionRef="TextRegion_1623161647468_1777"/>
+                <RegionRefIndexed index="2" regionRef="TextRegion_1623161639454_1769"/>
+                <RegionRefIndexed index="3" regionRef="TextRegion_1623161626472_1757"/>
+                <RegionRefIndexed index="4" regionRef="TextRegion_1623161704354_1845"/>
+                <RegionRefIndexed index="5" regionRef="TextRegion_1623161702597_1840"/>
+                <RegionRefIndexed index="6" regionRef="TextRegion_1623161688253_1825"/>
+                <RegionRefIndexed index="7" regionRef="TextRegion_1623161677073_1802"/>
+            </OrderedGroup>
+        </ReadingOrder>
+        <TextRegion orientation="0.0" id="TextRegion_1623161653181_1782" custom="readingOrder {index:0;}">
+            <Coords points="96,128 292,128 2744,248 2744,917 2240,920 1593,923 460,823 96,617"/>
+            <TextLine id="r2l1" custom="readingOrder {index:0;}">
+                <Coords points="89,233 143,218 167,229 213,219 234,234 247,233 259,218 297,209 290,120 235,132 214,123 196,135 171,117 116,161 83,161"/>
+                <Baseline points="104,200 133,202 162,199 191,196 220,192 249,190 278,190"/>
+                <TextEquiv>
+                    <Unicode>1899</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1623161659888_1789" custom="readingOrder {index:1;}">
+                <Coords points="99,376 351,327 456,359 1063,323 1062,270 934,268 809,211 675,271 603,236 514,263 399,241 340,203 98,248"/>
+                <Baseline points="116,324 144,326 172,325 200,324 228,322 256,320 284,320 510,314 536,316 563,316 590,317 617,318 644,318 670,318 697,318 724,318 751,318 778,318 804,318 831,318 858,316 885,316 912,315 938,314 965,312 992,311 1019,309 1046,306"/>
+                <TextEquiv>
+                    <Unicode>Sept. 28. Karlskrona.</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r7l2" custom="readingOrder {index:2;}">
+                <Coords points="932,550 1106,486 1591,496 1682,465 1932,535 1985,512 1984,387 1852,339 1653,439 1485,368 1361,445 1088,372 931,419"/>
+                <Baseline points="948,464 999,469 1050,471 1101,473 1152,474 1203,474 1254,476 1305,475 1356,474 1407,474 1458,472 1509,472 1560,470 1611,470 1662,468 1713,467 1764,466 1815,466 1866,465 1917,464 1968,466"/>
+                <TextEquiv>
+                    <Unicode>Polismästaren Gbg.</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r7l3" custom="readingOrder {index:3;}">
+                <Coords points="548,655 2728,635 2613,553 2076,576 2007,517 1627,589 548,544"/>
+                <Baseline points="564,626 671,628 778,628 886,628 993,628 1101,628 1208,628 1315,628 1423,628 1530,628 1638,626 1745,626 1852,626 1960,626 2067,626 2175,626 2282,626 2389,626 2497,628 2604,628 2712,630"/>
+                <TextEquiv>
+                    <Unicode>Omtelgraferade sjömännen böra såsom rym¬</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r7l4" custom="readingOrder {index:4;}">
+                <Coords points="458,763 697,791 786,752 855,778 1225,784 1226,698 1177,705 1118,665 973,710 918,670 878,690 820,657 688,728 596,695 459,714"/>
+                <Baseline points="476,750 512,751 549,752 586,752 622,752 659,753 696,754 732,754 769,754 806,754 843,754 879,754 916,754 953,754 989,754 1026,754 1063,754 1099,754 1136,755 1173,756 1210,756"/>
+                <TextEquiv>
+                    <Unicode>mare behandlas.</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r7l5" custom="readingOrder {index:5;}">
+                <Coords points="1503,873 1644,916 1736,860 1972,859 2028,905 2221,849 2346,918 2470,852 2729,888 2729,809 2401,750 2296,806 2231,767 2136,797 1998,728 1870,781 1634,699 1503,762"/>
+                <Baseline points="1518,848 1577,850 1637,850 1697,852 1757,852 1817,852 1876,850 1936,850 1996,850 2056,848 2116,848 2175,848 2235,846 2295,846 2355,846 2415,846 2474,848 2534,848 2594,850 2654,852 2714,856"/>
+                <TextEquiv>
+                    <Unicode>Stationsbefälhafvaren</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextEquiv>
+                <Unicode>1899
+Sept. 28, Karlskrona
+Polismästaren Gbg
+Ömtelgraferade sjömannen bora såsom rym¬
+mare behandlas.
+Stationsbefälhafvare</Unicode>
+            </TextEquiv>
+        </TextRegion>
+        <TextRegion orientation="0.0" id="TextRegion_1623161647468_1777" custom="readingOrder {index:1;}">
+            <Coords points="96,1057 1333,1104 2744,1156 2744,2147 2333,2150 1832,2153 529,2011 99,1927 96,1197"/>
+            <TextLine id="line_1623161663540_1793" custom="readingOrder {index:0;}">
+                <Coords points="78,1160 218,1196 347,1162 1107,1210 1109,1118 977,1134 900,1074 753,1067 636,1130 444,1076 165,1093 81,1055"/>
+                <Baseline points="96,1150 124,1153 152,1154 180,1156 208,1159 236,1161 264,1164 292,1166 686,1160 711,1164 736,1166 761,1168 787,1170 812,1172 837,1174 862,1176 888,1177 913,1178 938,1178 963,1178 989,1178 1014,1178 1039,1178 1064,1178 1090,1178"/>
+                <TextEquiv>
+                    <Unicode>Okt. 3 Westerås</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r7l7" custom="readingOrder {index:1;}">
+                <Coords points="1021,1330 1329,1318 1404,1359 1474,1318 1641,1315 1934,1391 2031,1344 2034,1203 1936,1185 1806,1267 1634,1213 1429,1261 1342,1213 1204,1229 1139,1198 1023,1245"/>
+                <Baseline points="1038,1288 1086,1292 1135,1295 1184,1298 1233,1298 1282,1301 1330,1302 1379,1304 1428,1305 1477,1306 1526,1306 1574,1307 1623,1308 1672,1308 1721,1310 1770,1310 1818,1312 1867,1312 1916,1314 1965,1316 2014,1316"/>
+                <TextEquiv>
+                    <Unicode>Detektipolisen Gbg.</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r7l8" custom="readingOrder {index:2;}">
+                <Coords points="460,1470 2683,1503 2648,1378 462,1352"/>
+                <Baseline points="478,1436 587,1438 696,1439 806,1440 915,1442 1025,1442 1134,1442 1243,1444 1353,1444 1462,1446 1572,1446 1681,1448 1790,1448 1900,1450 2009,1451 2119,1452 2228,1454 2337,1456 2447,1458 2556,1458 2666,1460"/>
+                <TextEquiv>
+                    <Unicode>Handelsresanden Ernst Cederlund, förr Hernösand,</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r7l9" custom="readingOrder {index:3;} textStyle {offset:41; length:1;superscript:true;}">
+                <Coords points="469,1581 2609,1645 2727,1624 2729,1522 930,1460 470,1525"/>
+                <Baseline points="486,1560 597,1563 708,1566 819,1568 930,1571 1042,1572 1153,1574 1264,1576 1375,1578 1486,1580 1598,1580 1709,1582 1820,1582 1931,1584 2042,1586 2154,1587 2265,1588 2376,1590 2487,1592 2598,1594 2710,1598"/>
+                <TextEquiv>
+                    <Unicode>men anstäld tobaksfabriksbolaget Sundén Co här, angif¬</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r7l10" custom="readingOrder {index:4;}">
+                <Coords points="477,1720 2618,1746 2704,1642 478,1645"/>
+                <Baseline points="494,1690 603,1690 713,1692 822,1692 932,1692 1042,1694 1151,1694 1261,1696 1370,1698 1480,1698 1590,1700 1699,1702 1809,1702 1918,1704 2028,1706 2138,1706 2247,1708 2357,1708 2466,1710 2576,1710 2686,1712"/>
+                <TextEquiv>
+                    <Unicode>ven förskingring 5,597 Kr. 50 öre, bör anhållas häktas</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r7l11" custom="readingOrder {index:5;}">
+                <Coords points="462,1869 1925,1844 1989,1904 2662,1881 2663,1805 2162,1729 1919,1805 1654,1742 1076,1799 723,1715 463,1771"/>
+                <Baseline points="478,1812 586,1816 694,1818 803,1822 911,1824 1020,1826 1128,1828 1236,1830 1345,1830 1453,1832 1562,1834 1670,1834 1778,1836 1887,1836 1995,1838 2104,1840 2212,1840 2320,1842 2429,1844 2537,1846 2646,1848"/>
+                <TextEquiv>
+                    <Unicode>för hitbefordran ransakning. Cederlund född 1873, ovan¬</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r7l12" custom="readingOrder {index:6;}">
+                <Coords points="478,1981 756,2036 1085,1960 1720,2015 1921,1961 2048,2028 2298,1978 2223,1901 1367,1924 1099,1865 950,1926 479,1853"/>
+                <Baseline points="494,1944 583,1946 672,1950 762,1952 851,1954 941,1956 1030,1956 1119,1958 1209,1958 1298,1958 1388,1960 1477,1960 1566,1960 1656,1960 1745,1960 1835,1960 1924,1962 2013,1962 2103,1962 2192,1964 2282,1964"/>
+                <TextEquiv>
+                    <Unicode>ligt lång, mörklagd, antages ämna emigrera.</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r7l13" custom="readingOrder {index:7;}">
+                <Coords points="1757,2164 1970,2184 2065,2173 2132,2119 2240,2117 2272,2138 2316,2102 2397,2107 2398,2055 2169,2021 2140,1997 1972,2037 1882,1973 1848,2005 1760,2020"/>
+                <Baseline points="1776,2082 1806,2084 1836,2084 1866,2086 1896,2086 1927,2088 1957,2088 1987,2090 2017,2092 2047,2092 2078,2093 2108,2094 2138,2094 2168,2095 2198,2096 2229,2095 2259,2094 2289,2094 2319,2093 2349,2092 2380,2090"/>
+                <TextEquiv>
+                    <Unicode>Stadsfiskalen.</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextEquiv>
+                <Unicode>okt. 3 Westeras
+Detektivolisen Gbg
+Handelsresanden Ernst Cederlund, förr Hernosand,
+men anstäld tobaksfabriksbolaget Sundén C här, angif¬
+ven förskingring 5,597 Kr. 50 öre, bör anhållas häktas
+för hitbefordran ransakning, Cederlund född 1873, ovan¬
+ligt lång, mörklagd, antages ämna emigrera.
+Stadsfiskalen.</Unicode>
+            </TextEquiv>
+        </TextRegion>
+        <TextRegion orientation="0.0" id="TextRegion_1623161639454_1769" custom="readingOrder {index:2;}">
+            <Coords points="100,2115 1481,2210 2744,2296 2744,3119 2070,3115 1647,3112 490,2867 103,2653"/>
+            <TextLine id="line_1623161756565_1889" custom="readingOrder {index:0;}">
+                <Coords points="93,2413 185,2409 227,2428 344,2398 391,2434 411,2419 463,2442 470,2321 424,2308 377,2338 288,2280 267,2299 190,2281 132,2317 99,2315"/>
+                <Baseline points="109,2399 446,2419"/>
+                <TextEquiv>
+                    <Unicode>Okt. 9</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r7l14" custom="readingOrder {index:1;}">
+                <Coords points="580,2275 666,2295 882,2279 911,2306 938,2293 987,2306 1026,2296 1027,2178 994,2162 955,2185 915,2168 853,2214 804,2210 729,2138 666,2190 581,2203"/>
+                <Baseline points="596,2264 621,2265 647,2266 673,2267 699,2268 725,2268 751,2268 777,2268 803,2268 828,2268 854,2268 880,2268 906,2268 932,2268 958,2268 984,2267 1010,2266"/>
+                <TextEquiv>
+                    <Unicode>Arendal</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r7l15" custom="readingOrder {index:2;}">
+                <Coords points="918,2443 1112,2413 1258,2498 1348,2430 1455,2488 1525,2430 1692,2420 1774,2461 1843,2416 1947,2493 2066,2443 2068,2345 1957,2310 1782,2350 1714,2302 1349,2362 1206,2297 920,2312"/>
+                <Baseline points="934,2388 989,2393 1045,2397 1101,2400 1157,2402 1213,2404 1268,2406 1324,2407 1380,2408 1436,2408 1492,2410 1547,2410 1603,2410 1659,2410 1715,2410 1771,2410 1826,2412 1882,2412 1938,2412 1994,2414 2050,2416"/>
+                <TextEquiv>
+                    <Unicode>Politimyndigheten, Gbg.</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r7l16" custom="readingOrder {index:3;}">
+                <Coords points="492,2550 2342,2551 2655,2625 2657,2491 2419,2424 2145,2512 1865,2435 1257,2500 999,2424 883,2491 494,2455"/>
+                <Baseline points="510,2520 616,2524 723,2528 829,2531 936,2534 1042,2536 1149,2538 1255,2539 1362,2540 1468,2542 1575,2542 1681,2544 1788,2544 1894,2546 2001,2546 2107,2548 2214,2551 2320,2554 2427,2558 2533,2561 2640,2566"/>
+                <TextEquiv>
+                    <Unicode>En norsk emisär Halset Stenersen Göteborg.</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r7l17" custom="readingOrder {index:4;}">
+                <Coords points="500,2682 2709,2738 2710,2656 2479,2602 502,2577"/>
+                <Baseline points="518,2658 626,2658 735,2658 844,2658 952,2658 1061,2658 1170,2660 1278,2660 1387,2662 1496,2664 1605,2666 1713,2669 1822,2672 1931,2674 2039,2677 2148,2680 2257,2684 2365,2687 2474,2690 2583,2695 2692,2698"/>
+                <TextEquiv>
+                    <Unicode>Reist hvarher? Holder föredrag dreyfusagen.</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r7l18" custom="readingOrder {index:5;}">
+                <Coords points="520,2853 638,2849 715,2802 859,2829 1184,2797 1236,2835 1331,2804 1333,2742 1153,2728 1096,2766 1021,2751 973,2703 924,2719 662,2676 576,2727 523,2719"/>
+                <Baseline points="538,2764 576,2769 615,2775 654,2778 693,2783 732,2786 771,2788 810,2790 849,2792 888,2792 927,2793 965,2794 1004,2794 1043,2793 1082,2792 1121,2792 1160,2792 1199,2791 1238,2790 1277,2790 1316,2790"/>
+                <TextEquiv>
+                    <Unicode>Lysbilleder svar</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r7l19" custom="readingOrder {index:6;}">
+                <Coords points="1460,2949 1604,2969 1719,2937 1748,2957 1801,2921 2165,2966 2362,2927 2362,2895 2208,2877 2142,2834 2073,2857 1949,2801 1798,2869 1729,2819 1654,2865 1549,2828 1460,2873"/>
+                <Baseline points="1476,2936 1519,2934 1562,2932 1606,2932 1649,2932 1693,2930 1736,2930 1779,2930 1823,2930 1866,2932 1910,2932 1953,2932 1996,2932 2040,2934 2083,2934 2127,2934 2170,2936 2213,2936 2257,2936 2300,2936 2344,2936"/>
+                <TextEquiv>
+                    <Unicode>Pastor Gundersen</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r7l20" custom="readingOrder {index:7;}">
+                <Coords points="1638,3072 1726,3087 1763,3062 1779,3078 1812,3063 2041,3080 2043,2982 1965,2980 1913,2940 1817,2984 1781,2960 1735,2959 1702,2982 1640,2990"/>
+                <Baseline points="1654,3052 1680,3053 1707,3054 1733,3054 1760,3054 1786,3055 1813,3056 1840,3056 1866,3056 1893,3056 1919,3056 1946,3058 1972,3058 1999,3060 2026,3062"/>
+                <TextEquiv>
+                    <Unicode>Arendal.</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextEquiv>
+                <Unicode>Okt. 9
+Arendal
+Solitimyndigheten, Gbg.
+En narsk enisår Halset Stenersen Göteborg,
+Reist hvarher E Hölder föredrag dreyfuesagen
+Lysbilleder svar
+Sostar Gundersen
+Arendal,</Unicode>
+            </TextEquiv>
+        </TextRegion>
+        <TextRegion orientation="0.0" id="TextRegion_1623161626472_1757" custom="readingOrder {index:3;}">
+            <Coords points="106,3075 1593,3160 2744,3225 2744,4137 476,4137 108,3270"/>
+            <TextLine id="line_1623161854418_1904" custom="readingOrder {index:0;}">
+                <Coords points="92,3243 764,3231 856,3284 911,3251 1013,3260 1013,3182 862,3139 767,3182 645,3114 524,3140 295,3098 180,3154 91,3151"/>
+                <Baseline points="108,3220 136,3218 165,3218 194,3218 222,3217 251,3216 280,3216 578,3216 604,3216 630,3216 656,3216 682,3216 708,3216 734,3216 760,3216 787,3216 813,3216 839,3216 865,3216 891,3216 917,3216 943,3216 969,3216 996,3214"/>
+                <TextEquiv>
+                    <Unicode>Okt. 20. Hamburg</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r7l22" custom="readingOrder {index:1;}">
+                <Coords points="985,3311 1536,3297 1612,3339 1697,3299 1821,3338 1877,3304 1946,3350 2054,3310 2053,3208 1896,3166 1660,3250 1512,3202 1381,3256 1257,3240 1138,3156 984,3216"/>
+                <Baseline points="1002,3290 1053,3292 1105,3292 1157,3292 1208,3292 1260,3292 1312,3290 1363,3290 1415,3290 1467,3289 1519,3288 1570,3288 1622,3287 1674,3286 1725,3286 1777,3286 1829,3286 1880,3286 1932,3286 1984,3286 2036,3288"/>
+                <TextEquiv>
+                    <Unicode>Polismästaren Gbg.</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r7l23" custom="readingOrder {index:2;}">
+                <Coords points="470,3448 2660,3431 2659,3349 2551,3327 1305,3393 469,3340"/>
+                <Baseline points="486,3426 593,3427 701,3428 809,3428 917,3428 1025,3426 1133,3426 1241,3424 1349,3422 1457,3420 1565,3418 1672,3416 1780,3414 1888,3413 1996,3412 2104,3410 2212,3410 2320,3410 2428,3410 2536,3412 2644,3412"/>
+                <TextEquiv>
+                    <Unicode>Fredrik Andersson arresteret Hamburg udle¬</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r7l24" custom="readingOrder {index:3;}">
+                <Coords points="503,3542 709,3595 1015,3530 1109,3583 2559,3560 2523,3455 503,3483"/>
+                <Baseline points="518,3528 619,3528 720,3528 821,3528 922,3528 1024,3528 1125,3528 1226,3528 1327,3528 1428,3528 1530,3528 1631,3528 1732,3528 1833,3528 1934,3528 2036,3530 2137,3530 2238,3530 2339,3532 2440,3534 2542,3536"/>
+                <TextEquiv>
+                    <Unicode>vering ad diplomatisk vei bedes snarest</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r7l25" custom="readingOrder {index:4;}">
+                <Coords points="487,3681 2687,3693 2688,3594 488,3580"/>
+                <Baseline points="502,3642 610,3640 718,3640 827,3640 935,3640 1044,3640 1152,3640 1260,3642 1369,3642 1477,3644 1586,3646 1694,3646 1802,3648 1911,3650 2019,3652 2128,3654 2236,3656 2344,3658 2453,3659 2561,3660 2670,3662"/>
+                <TextEquiv>
+                    <Unicode>foranlediget. Andersson forklarer, at Peters¬</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r7l26" custom="readingOrder {index:5;}">
+                <Coords points="482,3772 2691,3807 2761,3736 483,3687"/>
+                <Baseline points="498,3750 610,3748 722,3746 834,3745 947,3744 1059,3744 1171,3744 1284,3744 1396,3744 1508,3746 1621,3747 1733,3750 1845,3752 1957,3754 2070,3758 2182,3761 2294,3765 2407,3770 2519,3774 2631,3780 2744,3786"/>
+                <TextEquiv>
+                    <Unicode>son forledere ham tyveriet och fik 50 Kroner</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r7l27" custom="readingOrder {index:6;}">
+                <Coords points="494,3933 675,3855 2754,3904 2754,3828 2590,3782 495,3799"/>
+                <Baseline points="512,3858 623,3858 734,3856 845,3855 956,3854 1068,3854 1179,3854 1290,3852 1401,3852 1512,3854 1624,3854 1735,3854 1846,3854 1957,3856 2068,3858 2180,3858 2291,3860 2402,3862 2513,3864 2624,3866 2736,3868"/>
+                <TextEquiv>
+                    <Unicode>af belöbet. Petersson tog ind hotel d'Angleterre,</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r7l28" custom="readingOrder {index:7;}">
+                <Coords points="479,3990 574,4029 1108,3979 1230,4053 1377,3970 1561,4025 1656,3981 1719,4033 1922,3979 1921,3924 1688,3883 1557,3936 1190,3870 1049,3933 846,3889 767,3926 688,3874 479,3947"/>
+                <Baseline points="496,3980 566,3976 637,3973 707,3970 778,3968 848,3966 919,3966 989,3964 1060,3964 1130,3964 1201,3964 1271,3964 1342,3964 1412,3964 1483,3964 1553,3964 1624,3964 1694,3964 1765,3964 1835,3964 1906,3962"/>
+                <TextEquiv>
+                    <Unicode>Kjöbenhavn skrifvelse fölger.</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r7l29" custom="readingOrder {index:8;}">
+                <Coords points="1448,4171 1643,4110 1945,4126 1977,4095 2099,4095 2362,4128 2388,4121 2384,3983 2294,4035 2159,4018 2088,4053 1876,3993 1776,4061 1596,4075 1516,4015 1445,4053"/>
+                <Baseline points="1464,4108 1509,4108 1554,4106 1600,4106 1645,4104 1691,4104 1736,4102 1781,4100 1827,4098 1872,4098 1918,4095 1963,4094 2008,4092 2054,4092 2099,4090 2145,4090 2190,4088 2235,4088 2281,4088 2326,4090 2372,4090"/>
+                <TextEquiv>
+                    <Unicode>Generalkonsulatet.</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextEquiv>
+                <Unicode>Of. 29. Hamberg
+Polismästaren Hg.
+Fredrik Andersson arresteret Hamburg utle¬
+vering ad diplomatisk vei bedessnärest
+föranlediget. Andersson förklarar, åt Peters¬
+son förledere ham tyveriet och fik 50 Kronor.
+af belåbet Petersson tag vnd hötel d Ängleterre,
+kjöbenharn skrifvelse fölger.
+Generalkonsulåtet.</Unicode>
+            </TextEquiv>
+        </TextRegion>
+        <TextRegion orientation="0.0" id="TextRegion_1623161704354_1845" custom="readingOrder {index:4;}">
+            <Coords points="2830,91 3016,91 5512,214 5512,981 2827,981"/>
+            <TextLine id="r9l1" custom="readingOrder {index:0;}">
+                <Coords points="2820,189 2848,182 2860,168 2891,181 2915,158 2968,192 3026,172 3014,71 2971,69 2933,84 2895,71 2846,103 2810,107"/>
+                <Baseline points="2834,166 2863,164 2892,160 2921,157 2950,152 2979,149 3008,150"/>
+                <TextEquiv>
+                    <Unicode>1899</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1623161694838_1832" custom="readingOrder {index:1;}">
+                <Coords points="2812,305 5049,297 4741,192 3806,226 3367,129 2813,187"/>
+                <Baseline points="2830,282 2856,284 2883,282 2909,281 2936,280 2962,279 2989,278 3016,280 3246,272 3335,274 3424,274 3513,276 3603,276 3692,276 3781,276 3871,276 3960,276 4049,276 4139,276 4228,276 4317,276 4406,276 4496,276 4585,278 4674,278 4764,281 4853,283 4942,286 5032,290"/>
+                <TextEquiv>
+                    <Unicode>Sept. 28. Stationsbefälhafvaren Karlskrona.</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r13l2" custom="readingOrder {index:2;} textStyle {offset:24; length:2;superscript:true;}">
+                <Coords points="3294,520 5478,533 5478,441 5372,399 4786,444 4549,373 3845,455 3294,389"/>
+                <Baseline points="3310,512 3417,507 3525,504 3632,500 3740,497 3847,494 3955,492 4062,490 4170,488 4277,488 4385,488 4492,486 4600,488 4707,488 4815,488 4922,490 5030,492 5137,494 5245,496 5352,498 5460,500"/>
+                <TextEquiv>
+                    <Unicode>Tredje klassens sjömän Nis 434 James Nilsson</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r13l3" custom="readingOrder {index:3;}">
+                <Coords points="3169,682 4139,619 5467,689 5529,554 3768,593 3607,531 3168,600"/>
+                <Baseline points="3184,640 3300,637 3416,634 3533,632 3649,630 3766,628 3882,626 3998,624 4115,622 4231,621 4348,620 4464,620 4580,618 4697,618 4813,618 4930,618 5046,619 5162,620 5279,622 5395,622 5512,626"/>
+                <TextEquiv>
+                    <Unicode>och 442 Bror Nilsson anmält sig här. Uppgifva sig</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1623161882467_1946" custom="readingOrder {index:4;}">
+                <Coords points="3474,770 3533,789 3605,784 3621,771 3724,848 3802,807 3800,702 3767,699 3725,717 3692,694 3653,698 3593,653 3561,683 3518,678 3472,692"/>
+                <Baseline points="3489,762 3514,762 3626,760 3737,758 3785,757"/>
+                <TextEquiv>
+                    <Unicode>söndags</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1623161876921_1934" custom="readingOrder {index:5;}">
+                <Coords points="3744,698 3790,695 3828,726 3873,713 3904,734 3925,710 3961,701 3981,713 4014,708 4009,623 3858,632 3833,650 3796,635 3741,649"/>
+                <Baseline points="3761,690 3994,676"/>
+                <TextEquiv>
+                    <Unicode>hafva</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1623161881743_1940" custom="readingOrder {index:6;}">
+                <Coords points="3832,828 4045,759 5124,749 5425,798 5425,709 5277,667 5209,710 5127,648 4996,714 4697,642 4448,692 4369,640 4268,716 3832,717"/>
+                <Baseline points="3848,756 3849,756 3960,752 4072,750 4183,748 4295,746 4406,744 4518,744 4629,742 4741,742 4852,742 4964,744 5075,744 5187,746 5298,749 5410,754"/>
+                <TextEquiv>
+                    <Unicode>försummat inställelse å "Blenda".</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r13l7" custom="readingOrder {index:7;}">
+                <Coords points="3160,910 3494,896 3619,966 3782,885 3918,946 4140,881 4301,928 4399,907 4398,802 4237,834 4086,776 4015,840 3785,807 3726,847 3637,789 3523,833 3334,688 3157,716"/>
+                <Baseline points="3176,894 3236,892 3296,889 3356,888 3417,885 3477,884 3537,882 3598,881 3658,880 3718,880 3779,878 3839,878 3899,878 3959,878 4020,878 4080,878 4140,878 4201,876 4261,876 4321,876 4382,876"/>
+                <TextEquiv>
+                    <Unicode>Hvilka åtgärder påfordras?</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r13l8" custom="readingOrder {index:8;}">
+                <Coords points="4469,997 4636,987 4718,951 4820,983 4912,940 5259,945 5259,877 5177,893 5029,835 4977,855 4928,832 4833,885 4757,859 4695,875 4642,839 4469,869"/>
+                <Baseline points="4486,920 4523,924 4561,928 4599,930 4637,932 4675,934 4713,935 4751,936 4789,936 4827,935 4865,934 4902,933 4940,932 4978,932 5016,930 5054,929 5092,928 5130,926 5168,926 5206,926 5244,926"/>
+                <TextEquiv>
+                    <Unicode>Polismästaren.</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextEquiv>
+                <Unicode>1819
+Syst. 28 Stationsbefalhsfvaren Karlskrona;
+Tredje klassens sjörnär No 434 James Nilsson
+och 442 Bror Nilsson anmält sig här, Uljgagfra sig
+söndags
+hafvaa
+fönsummat inställelse å Blenda.
+lla afnden bafvderi
+Polismästaren.</Unicode>
+            </TextEquiv>
+        </TextRegion>
+        <TextRegion orientation="0.0" id="TextRegion_1623161702597_1840" custom="readingOrder {index:5;}">
+            <Coords points="2826,1355 5512,1355 5512,1792 2825,1792"/>
+            <TextLine id="line_1623161698073_1836" custom="readingOrder {index:0;}">
+                <Coords points="2819,1488 5422,1456 5422,1364 2818,1380"/>
+                <Baseline points="2836,1464 2864,1463 2893,1462 2922,1461 2950,1460 2979,1459 3008,1456 3256,1444 3363,1446 3471,1446 3578,1446 3686,1446 3793,1446 3901,1446 4008,1446 4116,1446 4223,1444 4331,1444 4438,1442 4546,1442 4653,1442 4761,1440 4868,1440 4976,1440 5083,1440 5191,1440 5298,1440 5406,1440"/>
+                <TextEquiv>
+                    <Unicode>Okt. 4. Telegrafiskt meddelande att Cederlund</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r13l10" custom="readingOrder {index:1;}">
+                <Coords points="3189,1616 4006,1648 4268,1580 4888,1659 5136,1568 5524,1647 5522,1443 5362,1501 5129,1440 4923,1541 3188,1488"/>
+                <Baseline points="3204,1598 3319,1592 3434,1589 3549,1586 3664,1584 3780,1582 3895,1582 4010,1580 4125,1580 4240,1580 4356,1580 4471,1580 4586,1580 4701,1580 4816,1580 4932,1578 5047,1576 5162,1574 5277,1570 5392,1567 5508,1560"/>
+                <TextEquiv>
+                    <Unicode>den 27. sistl. September med ångf. Thule af¬</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r13l11" custom="readingOrder {index:2;}">
+                <Coords points="3169,1789 3352,1796 3479,1718 3626,1709 3883,1787 4060,1735 4058,1663 3864,1617 3796,1638 3752,1596 3667,1610 3619,1660 3507,1613 3451,1650 3379,1609 3271,1669 3166,1635"/>
+                <Baseline points="3184,1728 3227,1724 3270,1722 3313,1720 3356,1718 3399,1716 3442,1714 3485,1712 3528,1711 3571,1710 3614,1710 3657,1708 3700,1708 3743,1708 3786,1708 3829,1708 3872,1708 3915,1710 3958,1710 4001,1712 4044,1714"/>
+                <TextEquiv>
+                    <Unicode>rest till London.</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextEquiv>
+                <Unicode>Okt 4 Selgrafrikt meddelande att Cederlund
+den 27 sistl. September med omf. Thule af¬
+rest till Löndon.</Unicode>
+            </TextEquiv>
+        </TextRegion>
+        <TextRegion orientation="0.0" id="TextRegion_1623161688253_1825" custom="readingOrder {index:6;}">
+            <Coords points="3116,2459 5512,2459 5512,2806 3116,2806"/>
+            <TextLine id="r13l12" custom="readingOrder {index:0;}">
+                <Coords points="3201,2597 4001,2595 4241,2678 4454,2593 5464,2624 5464,2552 5205,2466 4683,2538 4071,2402 3769,2552 3641,2460 3549,2522 3202,2433"/>
+                <Baseline points="3218,2578 3329,2582 3440,2584 3552,2586 3663,2586 3775,2586 3886,2586 3997,2586 4109,2586 4220,2584 4332,2584 4443,2584 4554,2582 4666,2582 4777,2582 4889,2584 5000,2584 5111,2586 5223,2588 5334,2592 5446,2596"/>
+                <TextEquiv>
+                    <Unicode>Telegrafsvar till Gundersen att Stener¬</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r13l13" custom="readingOrder {index:1;}">
+                <Coords points="3149,2751 4700,2745 4755,2735 4755,2620 4578,2595 4237,2675 3804,2598 3434,2688 3148,2607"/>
+                <Baseline points="3166,2726 3244,2726 3323,2726 3401,2726 3480,2726 3559,2724 3637,2724 3716,2722 3794,2722 3873,2721 3952,2720 4030,2720 4109,2718 4187,2718 4266,2718 4345,2718 4423,2720 4502,2720 4580,2722 4659,2723 4738,2726"/>
+                <TextEquiv>
+                    <Unicode>sen icke härstädes vore känd.</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextEquiv>
+                <Unicode>Tilgrefsvar till Gundersen att Stener¬
+sen icke härstädes vore bänd;</Unicode>
+            </TextEquiv>
+        </TextRegion>
+        <TextRegion orientation="0.0" id="TextRegion_1623161677073_1802" custom="readingOrder {index:7;}">
+            <Coords points="2824,3135 5512,3135 5512,4243 3146,4243 2824,3328 2824,3174"/>
+            <TextLine id="line_1623161672809_1798" custom="readingOrder {index:0;}">
+                <Coords points="2807,3300 5463,3293 5464,3172 5215,3143 2809,3113"/>
+                <Baseline points="2824,3278 2849,3276 2874,3275 2900,3274 2925,3275 2950,3276 2976,3278 3216,3258 3327,3262 3439,3264 3550,3268 3662,3270 3773,3272 3885,3274 3996,3275 4108,3276 4219,3278 4331,3280 4442,3280 4554,3282 4665,3282 4777,3284 4888,3284 5000,3286 5111,3286 5223,3288 5334,3290 5446,3292"/>
+                <TextEquiv>
+                    <Unicode>Okt. 17. Politidirektören Köpenhamn, Politimesteren</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r13l15" custom="readingOrder {index:1;}">
+                <Coords points="3169,3407 4756,3409 4883,3472 5451,3430 5517,3332 3169,3335"/>
+                <Baseline points="3184,3390 3299,3390 3415,3390 3531,3390 3647,3391 3763,3392 3878,3392 3994,3392 4110,3394 4226,3394 4342,3396 4457,3396 4573,3398 4689,3398 4805,3400 4921,3400 5036,3402 5152,3402 5268,3404 5384,3404 5500,3406"/>
+                <TextEquiv>
+                    <Unicode>Kristiania och Scwedisch-Norwegisches Consu¬</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r13l16" custom="readingOrder {index:2;}">
+                <Coords points="3156,3555 3205,3533 3274,3553 3346,3508 3418,3552 3700,3538 3791,3598 3867,3590 3916,3574 3918,3413 3773,3457 3682,3410 3613,3452 3544,3415 3390,3453 3325,3413 3157,3434"/>
+                <Baseline points="3172,3514 3208,3514 3244,3516 3281,3516 3317,3516 3354,3518 3390,3518 3426,3518 3463,3518 3499,3520 3536,3520 3572,3520 3608,3520 3645,3520 3681,3522 3718,3522 3754,3522 3790,3522 3827,3522 3863,3522 3900,3522"/>
+                <TextEquiv>
+                    <Unicode>lat Hamburg.</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r13l17" custom="readingOrder {index:3;}">
+                <Coords points="3208,3705 4634,3755 5509,3687 5509,3566 5243,3527 5053,3652 4755,3666 4365,3588 4201,3667 4027,3582 3867,3658 3378,3544 3207,3620"/>
+                <Baseline points="3224,3680 3337,3681 3451,3682 3564,3684 3678,3686 3791,3688 3905,3690 4018,3692 4132,3692 4245,3694 4359,3694 4472,3694 4586,3694 4699,3692 4813,3692 4926,3690 5040,3686 5153,3682 5267,3678 5380,3673 5494,3668"/>
+                <TextEquiv>
+                    <Unicode>Hotellvaktmästaren förre sjömannen Fredrik</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r13l18" custom="readingOrder {index:4;}">
+                <Coords points="3162,3815 5059,3909 5231,3819 5499,3830 5500,3755 3162,3729"/>
+                <Baseline points="3178,3800 3293,3804 3408,3806 3523,3808 3639,3812 3754,3814 3869,3816 3985,3818 4100,3820 4215,3822 4331,3824 4446,3824 4561,3826 4676,3826 4792,3826 4907,3824 5022,3822 5138,3821 5253,3818 5368,3814 5484,3810"/>
+                <TextEquiv>
+                    <Unicode>Andersson 29 år gammal, lång och grof, stora</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r13l19" custom="readingOrder {index:5;}">
+                <Coords points="3159,3965 5463,3992 5521,3859 4786,3927 4669,3856 4513,3936 4288,3847 4166,3921 3669,3825 3465,3894 3160,3847"/>
+                <Baseline points="3174,3932 3290,3934 3407,3935 3523,3938 3640,3940 3756,3942 3873,3945 3989,3948 4106,3951 4222,3954 4339,3956 4455,3958 4572,3960 4688,3962 4805,3964 4921,3964 5038,3964 5154,3964 5271,3962 5387,3960 5504,3956"/>
+                <TextEquiv>
+                    <Unicode>ljusa utstående mustacher, stor rak näsa, blå</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r13l20" custom="readingOrder {index:6;}">
+                <Coords points="3146,4083 3476,4156 3641,4079 4273,4168 4523,4099 5139,4136 5493,4110 5528,3976 5389,4050 4783,3981 4461,4062 4085,3966 3704,4040 3554,3963 3366,4033 3147,3978"/>
+                <Baseline points="3162,4062 3279,4064 3396,4066 3514,4068 3631,4071 3749,4073 3866,4076 3983,4079 4101,4082 4218,4084 4336,4088 4453,4090 4570,4090 4688,4092 4805,4092 4923,4092 5040,4092 5157,4090 5275,4087 5392,4083 5510,4078"/>
+                <TextEquiv>
+                    <Unicode>ögon, framåtlutande gång, iklädd blå cheviot¬</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r13l21" custom="readingOrder {index:7;}">
+                <Coords points="3128,4251 3357,4283 3529,4186 5518,4295 5517,4101 4480,4183 3933,4082 3522,4160 3130,4094"/>
+                <Baseline points="3146,4198 3263,4196 3381,4194 3499,4194 3617,4194 3735,4194 3852,4196 3970,4198 4088,4200 4206,4204 4324,4206 4441,4208 4559,4210 4677,4212 4795,4214 4913,4214 5030,4214 5148,4214 5266,4212 5384,4209 5502,4204"/>
+                <TextEquiv>
+                    <Unicode>kostym, blå klädesmössa och svarta skor af¬</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextEquiv>
+                <Unicode>Akl. 17. Paktedirekstören Köpenhamn, Politimestaren
+Kristiania och Silwedisch- Naredegisches Oonsa¬
+lat Hamburg.
+Hotelbraktmästaren förre sjömannen Fredrik
+Andersson 29 år gammal, läng och graf, stora
+ljusa utstående mistacher, stör rak näsa blå¬
+sgon, framstlutande gång, iklädd blå chemot
+kostym blå klädesmössa och erata skor af</Unicode>
+            </TextEquiv>
+        </TextRegion>
+    </Page>
+</PcGts>
