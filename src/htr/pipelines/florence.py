@@ -241,7 +241,7 @@ class FlorencePipeline():
         self.batch_size      = batch_size
 
         if logger is None:
-            self.logger = CustomLogger(f"pipeline__{pipeline_type}", log_to_local=True, log_path=PROJECT_DIR / "logs")
+            self.logger = CustomLogger(f"pipeline__{pipeline_type}", log_to_local=False, log_path=PROJECT_DIR / "logs")
         else:
             self.logger = logger
         
@@ -311,11 +311,11 @@ class FlorencePipeline():
         page_line_od_output, page_line_imgs = self.line_od.run(image)
 
         ## OCR
-        self.logger.info("Batch text recognition")
+        self.logger.info("Text recognition")
         iterator = list(range(0, len(page_line_od_output.polygons), self.batch_size))
         page_line_texts = []
 
-        for i in tqdm(iterator, total=len(iterator), unit="batch"):
+        for i in tqdm(iterator, total=len(iterator), unit="batch", desc="Text recognition"):
             batch_indices = slice(i, i+self.batch_size)
             texts = self.ocr.run(page_line_imgs[batch_indices])
             page_line_texts += texts

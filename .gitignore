@@ -5,5 +5,8 @@
 # Folders
 data/*
 tmp/*
-logs/*
+temp/*
+**/logs/*
+models/*
 __pycache__
+.gradio

@@ -40,7 +40,8 @@ def draw_bboxes_xyxy(
         )
     
     ax.axis('off')
-    plt.show()
+    # plt.show()
+    return fig, ax
 
 
 def draw_page_line_segments(
@@ -120,6 +121,8 @@ def draw_page_line_segments(
                 linewidth=2, edgecolor='r', facecolor='none', label="Bounding Box"
             )
             ax.add_patch(rect)
+    
+    return fig, ax
 
 
 def draw_segment_masks(image: Image, masks: list[list[tuple | list]], fig_size=15):
