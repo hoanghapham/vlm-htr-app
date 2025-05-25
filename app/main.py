@@ -6,6 +6,9 @@ PROJECT_DIR = Path(__file__).parent.parent
 sys.path.append(str(PROJECT_DIR))
 
 # Hugging Face space-specific setup
+
+print("HF user:", os.environ.get("USER"))
+
 if os.environ.get("USER") == "user":
     HF_HOME             = "/home/user/huggingface"
     HF_MODULES_CACHE    = HF_HOME + "/modules"

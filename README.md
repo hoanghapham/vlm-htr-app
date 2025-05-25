@@ -1,5 +1,5 @@
 ---
-title: HTR on Swedish Historical Manuscripts using Visual Language Model
+title: HTR with VLM
 sdk: gradio
 sdk_version: 5.30.0
 python_version: 3.10.13
