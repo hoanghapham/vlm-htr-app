@@ -17,6 +17,7 @@ os.environ["GRADIO_CACHE_DIR"]  = GRADIO_CACHE
 import time
 import gradio as gr
 import spaces
+import torch
 from PIL import Image
 from jinja2 import Environment, FileSystemLoader
 
@@ -86,6 +87,7 @@ def get_selected_example(event: gr.SelectData) -> list[str]:
 
 
 # Pipeline functions
+@spaces.GPU()
 def init_pipeline(device="cpu") -> FlorencePipeline:
     """Initiate the pipeline"""
     pipeline = FlorencePipeline(
@@ -101,10 +103,9 @@ def init_pipeline(device="cpu") -> FlorencePipeline:
 
 @spaces.GPU()
 def run_htr_pipeline(
-    pipeline: FlorencePipeline | None, 
+    pipeline: FlorencePipeline, 
     images: list[tuple], 
     outputs: list, 
-    device: str, 
     progress=gr.Progress(track_tqdm=True)
 ):
     """Run HTR Pipeline, with progress bar"""
@@ -116,10 +117,6 @@ def run_htr_pipeline(
     progress(0.0, desc="Starting up...")
     time.sleep(1)
 
-    if pipeline is None:
-        progress(0.1, desc="Initiate pipeline...")
-        pipeline = init_pipeline(device=device)
-    
     progress(0.3, desc="Running pipeline...")
 
     # Cache result from previous run
@@ -167,9 +164,8 @@ with gr.Blocks(title="submit") as submit:
             columns=4,
             container=False,
         )
-
     with gr.Row():
-        device = gr.Dropdown(choices=["cpu", "cuda"], label="Device", value="cpu", interactive=True)
+        # device = gr.Dropdown(choices=["cpu", "cuda"], label="Device", value="cpu", interactive=True)
         run_btn = gr.Button("Transcribe")
 
 # Output tab
@@ -205,9 +201,14 @@ with gr.Blocks(
 ) as demo:
     gr.Markdown("<h1>HTR with VLM</h1>", elem_classes="title-h1")
 
-    # States
-    pipeline = gr.State(None)
+    # Setup output collection
     outputs = gr.State([])
+
+    # Setup device
+    pipeline = gr.State(None)
+    DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
+    if pipeline is None:
+        pipeline = init_pipeline(device=DEVICE)
 
     # Tabs
     with gr.Tabs() as tabs:
@@ -225,7 +226,7 @@ with gr.Blocks(
     # If click run, run the pipeline
     run_btn.click(
         fn=run_htr_pipeline,
-        inputs=[pipeline, input_images, outputs, device],
+        inputs=[pipeline, input_images, outputs],
         outputs=[outputs],
         show_progress="full",
         show_progress_on=[input_images]
