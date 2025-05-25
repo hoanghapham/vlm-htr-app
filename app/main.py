@@ -23,18 +23,17 @@ _ENV = Environment(loader=FileSystemLoader(PROJECT_DIR / "app/assets/jinja_templ
 _IMAGE_TEMPLATE = _ENV.get_template("image")
 _TRANSCRIPTION_TEMPLATE = _ENV.get_template("transcription")
 
-GRADIO_CACHE = Path(".gradio")
-EXAMPLES_DIR = Path(__file__).parent / "assets/examples"
-OUTPUT_CACHE_DIR = GRADIO_CACHE / "outputs"
+HF_HOME             = "/home/user/huggingface"
+GRADIO_CACHE        = ".gradio"
+OUTPUT_CACHE_DIR    = Path(".gradio/outputs")
+EXAMPLES_DIR        = Path(__file__).parent / "assets/examples"
 BATCH_SIZE = 2
 
 if not OUTPUT_CACHE_DIR.exists():
     OUTPUT_CACHE_DIR.mkdir(parents=True)
 
 os.environ["HF_HOME"] = "/home/user/huggingface"
-os.environ["GRADIO_CACHE_DIR"] = GRADIO_CACHE
-
-
+os.environ["GRADIO_CACHE_DIR"] = str(GRADIO_CACHE)
 
 logger = CustomLogger(__name__)
 
