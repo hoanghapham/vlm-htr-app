@@ -7,7 +7,7 @@ PROJECT_DIR = Path(__file__).parent.parent
 sys.path.append(str(PROJECT_DIR))
 
 # Need this to be able to write cache on HF Space
-HF_HOME                         = "./cache/huggingface"
+HF_HOME                         = ".cache/huggingface"
 HF_MODULES_CACHE                = HF_HOME + "/modules"
 os.environ["HF_HOME"]           = HF_HOME
 os.environ["HF_MODULES_CACHE"]  = HF_MODULES_CACHE
@@ -135,6 +135,8 @@ def run_htr_pipeline(
 
     # Cache result from previous run
     cache_path = Path(OUTPUT_CACHE_DIR) / Path(image_name).with_suffix(".json")
+
+    print(use_cache)
     
     if use_cache and cache_path.exists():
         progress(0.5, desc="Cache found, loading cache...")
@@ -187,7 +189,7 @@ with gr.Blocks(title="submit") as submit:
                 container=False,
             )
             # device = gr.Dropdown(choices=["cpu", "cuda"], label="Device", value="cpu", interactive=True)
-            use_cache = gr.Radio(["Yes", "No"], label="Use cached result?", value="Yes", interactive=True)
+            use_cache = gr.Radio([True, False], label="Use cached result", value=True, interactive=True)
             run_btn = gr.Button("Transcribe")
 
 # Output tab
@@ -228,11 +230,11 @@ with gr.Blocks(
     1. Detect text lines from the page image
     2. Perform text recognition on detected lines
                 
-    This space does not have access to GPU and default to using CPU. 
-    Inference from scratch will be extremely slow, so I cached example results to disk. Some notes:
+    This space does not have access to GPU.
+    Inference on CPU will be extremely slow, so I cached example results to disk. Some notes:
     
-    - To view example outputs, select one image from the examples, and choose "Yes" under **Used cached result**.
-        To transcribe an example from scratch, choose "No".
+    - To view example outputs, select one image from the examples, and choose  **Used cached result: True**.
+        To transcribe an example from scratch, choose **False**.
     - New images uploaded will be transcribed from scratch.
     """)
 

@@ -10,4 +10,5 @@ temp/*
 models/*
 __pycache__
 .gradio
+.cache
 # **/examples/*
