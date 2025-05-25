@@ -68,6 +68,8 @@ def render_result(inputs: list[tuple[str, Page]]):
     image_out = render_image(Image.open(image), page.path, page.lines)
     text_out = render_transcription(page)
 
+    print("Compiled image_out:", image_out)
+
     return image_out, text_out
 
 
@@ -84,7 +86,7 @@ def get_examples() -> list[[tuple[Image.Image, str]]]:
 
 def get_selected_example(event: gr.SelectData) -> list[str]:
     """Get path to the selected example image."""
-    # print(event.value["caption"])
+    print("select event:", event.value)
     return [(event.value["image"]["path"], event.value["caption"])]
 
 
