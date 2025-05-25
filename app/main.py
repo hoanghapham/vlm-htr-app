@@ -33,8 +33,9 @@ BATCH_SIZE = 2
 if not Path(OUTPUT_CACHE_DIR).exists():
     Path(OUTPUT_CACHE_DIR).mkdir(parents=True)
 
-os.environ["HF_HOME"] = "/home/user/huggingface"
-os.environ["GRADIO_CACHE_DIR"] = str(GRADIO_CACHE)
+os.environ["HF_HOME"]           = HF_HOME
+os.environ["GRADIO_CACHE_DIR"]  = GRADIO_CACHE
+os.environ["HF_MODULES_CACHE"]  = HF_MODULES_CACHE
 
 logger = CustomLogger(__name__)
 
