@@ -6,6 +6,7 @@ sys.path.append(str(PROJECT_DIR))
 
 import time
 import gradio as gr
+import spaces
 from PIL import Image
 from jinja2 import Environment, FileSystemLoader
 
@@ -14,9 +15,9 @@ from src.file_tools import list_files
 from src.htr.pipelines.florence import FlorencePipeline
 from src.data_types import Page
 from src.logger import CustomLogger
-from configs.gradio_configs import css, theme
+from app.configs import css, theme
 
-
+#%%
 _ENV = Environment(loader=FileSystemLoader(PROJECT_DIR / "app/assets/jinja_templates"))
 _IMAGE_TEMPLATE = _ENV.get_template("image")
 _TRANSCRIPTION_TEMPLATE = _ENV.get_template("transcription")
@@ -79,8 +80,8 @@ def init_pipeline(device="cpu") -> FlorencePipeline:
     """Initiate the pipeline"""
     pipeline = FlorencePipeline(
         pipeline_type       = "line_od__ocr",
-        line_od_model_path  = PROJECT_DIR / "models/florence_based__mixed__page__line_od",
-        ocr_model_path      = PROJECT_DIR / "models/florence_based__mixed__line_bbox__ocr",
+        line_od_model_path  = "nazounoryuu/florence_base__mixed__page__line_od",
+        ocr_model_path      = "nazounoryuu/florence_base__mixed__line_bbox__ocr",
         batch_size          = BATCH_SIZE,
         device              = device,
         logger              = logger,
@@ -88,6 +89,7 @@ def init_pipeline(device="cpu") -> FlorencePipeline:
     return pipeline
 
 
+@spaces.GPU()
 def run_htr_pipeline(
     pipeline: FlorencePipeline | None, 
     images: list[tuple], 
@@ -110,6 +112,7 @@ def run_htr_pipeline(
     
     progress(0.3, desc="Running pipeline...")
 
+    # Cache result from previous run
     use_cache = True
     cache_path = OUTPUT_CACHE_DIR / Path(image_path).name
     
@@ -131,7 +134,8 @@ def run_htr_pipeline(
     return new_outputs
 
 
-# Interface
+# Interfaces
+# Submit tab
 with gr.Blocks(title="submit") as submit:
     with gr.Row():
 
@@ -158,7 +162,7 @@ with gr.Blocks(title="submit") as submit:
         device = gr.Dropdown(choices=["cpu", "cuda"], label="Device", value="cpu", interactive=True)
         run_btn = gr.Button("Transcribe")
 
-
+# Output tab
 with gr.Blocks(title="output") as output:
     with gr.Row():
         with gr.Column(scale=2):
@@ -183,7 +187,7 @@ with gr.Blocks(title="output") as output:
                 show_label=True
             )
 
-
+# Main
 with gr.Blocks(
     title="HTR with VLM",
     css=css,
@@ -191,7 +195,7 @@ with gr.Blocks(
 ) as demo:
     gr.Markdown("<h1>HTR with VLM</h1>", elem_classes="title-h1")
 
-    # State
+    # States
     pipeline = gr.State(None)
     outputs = gr.State([])
 
