@@ -24,13 +24,14 @@ _IMAGE_TEMPLATE = _ENV.get_template("image")
 _TRANSCRIPTION_TEMPLATE = _ENV.get_template("transcription")
 
 HF_HOME             = "/home/user/huggingface"
+HF_MODULES_CACHE    = HF_HOME + "/modules"
 GRADIO_CACHE        = ".gradio"
-OUTPUT_CACHE_DIR    = Path(".gradio/outputs")
+OUTPUT_CACHE_DIR    = GRADIO_CACHE + "/outputs"
 EXAMPLES_DIR        = Path(__file__).parent / "assets/examples"
 BATCH_SIZE = 2
 
-if not OUTPUT_CACHE_DIR.exists():
-    OUTPUT_CACHE_DIR.mkdir(parents=True)
+if not Path(OUTPUT_CACHE_DIR).exists():
+    Path(OUTPUT_CACHE_DIR).mkdir(parents=True)
 
 os.environ["HF_HOME"] = "/home/user/huggingface"
 os.environ["GRADIO_CACHE_DIR"] = str(GRADIO_CACHE)
@@ -118,7 +119,7 @@ def run_htr_pipeline(
 
     # Cache result from previous run
     use_cache = True
-    cache_path = OUTPUT_CACHE_DIR / Path(image_path).name
+    cache_path = Path(OUTPUT_CACHE_DIR) / Path(image_path).name
     
     if use_cache and cache_path.exists():
         page_data = Page.from_json(cache_path)
