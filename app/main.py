@@ -6,13 +6,11 @@ PROJECT_DIR = Path(__file__).parent.parent
 sys.path.append(str(PROJECT_DIR))
 
 # Hugging Face space-specific setup
-HF_HOME             = "/home/user/huggingface"
-HF_MODULES_CACHE    = HF_HOME + "/modules"
-GRADIO_CACHE        = ".gradio"
-
-os.environ["HF_HOME"]           = HF_HOME
-os.environ["HF_MODULES_CACHE"]  = HF_MODULES_CACHE
-os.environ["GRADIO_CACHE_DIR"]  = GRADIO_CACHE
+if os.environ.get("USER") == "huggingface":
+    HF_HOME             = "/home/user/huggingface"
+    HF_MODULES_CACHE    = HF_HOME + "/modules"
+    os.environ["HF_HOME"]           = HF_HOME
+    os.environ["HF_MODULES_CACHE"]  = HF_MODULES_CACHE
 
 import time
 import gradio as gr
@@ -20,6 +18,7 @@ import spaces
 import torch
 from PIL import Image
 from jinja2 import Environment, FileSystemLoader
+from src.file_tools import suppress_stdout_stderr
 
 
 from src.file_tools import list_files
@@ -33,9 +32,12 @@ _ENV = Environment(loader=FileSystemLoader(PROJECT_DIR / "app/assets/jinja_templ
 _IMAGE_TEMPLATE = _ENV.get_template("image")
 _TRANSCRIPTION_TEMPLATE = _ENV.get_template("transcription")
 
+GRADIO_CACHE_DIR    = ".gradio_cache"
 EXAMPLES_DIR        = Path(__file__).parent / "assets/examples"
-OUTPUT_CACHE_DIR    = GRADIO_CACHE + "/outputs"
+OUTPUT_CACHE_DIR    = GRADIO_CACHE_DIR + "/outputs"
 BATCH_SIZE = 2
+
+os.environ["GRADIO_CACHE_DIR"]  = GRADIO_CACHE_DIR
 
 if not Path(OUTPUT_CACHE_DIR).exists():
     Path(OUTPUT_CACHE_DIR).mkdir(parents=True)
@@ -75,15 +77,16 @@ def change_tab():
     return gr.Tabs(selected=1)
 
 
-def get_examples() -> list[Image.Image]:
+def get_examples() -> list[[tuple[Image.Image, str]]]:
     """Get examples from assets folder"""
     img_paths = list_files(EXAMPLES_DIR, extensions=[".jpg", ".png", ".tif"])
-    return [Image.open(path) for path in img_paths]
+    return [(Image.open(path), path.name) for path in img_paths]
 
 
 def get_selected_example(event: gr.SelectData) -> list[str]:
     """Get path to the selected example image."""
-    return [event.value["image"]["path"]]
+    # print(event.value["caption"])
+    return [(event.value["image"]["path"], event.value["caption"])]
 
 
 # Pipeline functions
@@ -103,42 +106,58 @@ def init_pipeline(device="cpu") -> FlorencePipeline:
 
 @spaces.GPU()
 def run_htr_pipeline(
-    pipeline: FlorencePipeline, 
+    pipeline: FlorencePipeline | None, 
     images: list[tuple], 
     outputs: list, 
-    progress=gr.Progress(track_tqdm=True)
+    progress=gr.Progress(track_tqdm=True),
+    use_cache: bool = True
 ):
     """Run HTR Pipeline, with progress bar"""
 
     # Currently support only one image
     # TODO: iterate through images and run the pipeline
+    assert images is not None, "Please select at least one image"
     image_path = images[-1][0]
+
+    if images[-1][1] is None:
+        image_name = Path(image_path).name
+    else:
+        image_name = images[-1][1]
 
     progress(0.0, desc="Starting up...")
     time.sleep(1)
 
-    progress(0.3, desc="Running pipeline...")
+    # progress(0.3, desc="Loading pipeline...")
+    DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
+    if pipeline is None is None:
+        progress(0.3, desc="Initiating pipeline...")
+        with suppress_stdout_stderr():
+            pipeline = init_pipeline(device=DEVICE)
 
     # Cache result from previous run
-    use_cache = True
-    cache_path = Path(OUTPUT_CACHE_DIR) / Path(image_path).name
+    cache_path = Path(OUTPUT_CACHE_DIR) / Path(image_name).with_suffix(".json")
     
     if use_cache and cache_path.exists():
+        progress(0.5, desc="Cache found, loading cache...")
+        time.sleep(1)
         page_data = Page.from_json(cache_path)
     else:
+        progress(0.5, desc="Transcribing...")
+        time.sleep(1)
+        logger.info(f"Processing {image_name}")
         page_data = pipeline.run(Image.open(image_path).convert("RGB"))
+    
         page_data.path = image_path  # Need to update file path to display the image later
-
-    # Save to cache
-    page_data.to_json(cache_path)
-
+        page_data.to_json(cache_path)
+        logger.info(f"Done, saved result to {cache_path}")
+    
     progress(1.0, desc="Done")
 
     gr.Info("Transcribing done, redirecting to output tab...")
     time.sleep(1)
 
     new_outputs = outputs + [(image_path, page_data)]
-    return new_outputs
+    return new_outputs, pipeline
 
 
 # Interfaces
@@ -147,26 +166,28 @@ with gr.Blocks(title="submit") as submit:
     with gr.Row():
 
         input_images = gr.Gallery(
-            file_types=["image"],
             label="Input images",
+            file_types=["image"],
             interactive=True,
             object_fit="scale-down"
         )
         
-        examples = gr.Gallery(
-            value=get_examples(),
-            show_label=False,
-            interactive=False,
-            allow_preview=False,
-            object_fit="scale-down",
-            min_width=250,
-            height="100%",
-            columns=4,
-            container=False,
-        )
-    with gr.Row():
-        # device = gr.Dropdown(choices=["cpu", "cuda"], label="Device", value="cpu", interactive=True)
-        run_btn = gr.Button("Transcribe")
+        with gr.Column():
+            examples = gr.Gallery(
+                label="Examples",
+                value=get_examples(),
+                show_label=False,
+                interactive=False,
+                allow_preview=False,
+                object_fit="scale-down",
+                min_width=250,
+                height="100%",
+                columns=4,
+                container=False,
+            )
+            # device = gr.Dropdown(choices=["cpu", "cuda"], label="Device", value="cpu", interactive=True)
+            use_cache = gr.Radio(["Yes", "No"], label="Use cached result?", value="Yes", interactive=True)
+            run_btn = gr.Button("Transcribe")
 
 # Output tab
 with gr.Blocks(title="output") as output:
@@ -200,16 +221,26 @@ with gr.Blocks(
     theme=theme
 ) as demo:
     gr.Markdown("<h1>HTR with VLM</h1>", elem_classes="title-h1")
+    gr.Markdown("""
+    This handwritten text recognition pipeline uses Florence-2 fine-tuned for text line detection and OCR tasks. Steps in the pipeline:
+        
+    1. Detect text lines from the page image
+    2. Perform text recognition on detected lines
+                
+    This space does not have access to GPU and default to using CPU. 
+    Inference from scratch will be extremely slow, so I cached example results to disk. Some notes:
+    
+    - To view example outputs, select one image from the examples, and choose "Yes" under **Used cached result**.
+        To transcribe an example from scratch, choose "No".
+    - New images uploaded will be transcribed from scratch.
+    """)
 
     # Setup output collection
     outputs = gr.State([])
 
-    # Setup device
+    # Setup state object to store pipeline
     pipeline = gr.State(None)
-    DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
-    if pipeline is None:
-        pipeline = init_pipeline(device=DEVICE)
-
+    
     # Tabs
     with gr.Tabs() as tabs:
 
@@ -226,8 +257,8 @@ with gr.Blocks(
     # If click run, run the pipeline
     run_btn.click(
         fn=run_htr_pipeline,
-        inputs=[pipeline, input_images, outputs],
-        outputs=[outputs],
+        inputs=[pipeline, input_images, outputs, use_cache],
+        outputs=[outputs, pipeline],
         show_progress="full",
         show_progress_on=[input_images]
     )
