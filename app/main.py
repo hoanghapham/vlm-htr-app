@@ -6,7 +6,7 @@ PROJECT_DIR = Path(__file__).parent.parent
 sys.path.append(str(PROJECT_DIR))
 
 # Hugging Face space-specific setup
-if os.environ.get("USER") == "huggingface":
+if os.environ.get("USER") == "user":
     HF_HOME             = "/home/user/huggingface"
     HF_MODULES_CACHE    = HF_HOME + "/modules"
     os.environ["HF_HOME"]           = HF_HOME
@@ -41,7 +41,6 @@ os.environ["GRADIO_CACHE_DIR"]  = GRADIO_CACHE_DIR
 
 if not Path(OUTPUT_CACHE_DIR).exists():
     Path(OUTPUT_CACHE_DIR).mkdir(parents=True)
-
 
 
 logger = CustomLogger(__name__)
