@@ -1,19 +1,16 @@
 #%%
-import sys
 import os
+import sys
 from pathlib import Path
+
 PROJECT_DIR = Path(__file__).parent.parent
 sys.path.append(str(PROJECT_DIR))
 
-# Hugging Face space-specific setup
-
-print("HF user:", os.environ.get("USER"))
-
-if os.environ.get("USER") == "user":
-    HF_HOME             = "/home/user/huggingface"
-    HF_MODULES_CACHE    = HF_HOME + "/modules"
-    os.environ["HF_HOME"]           = HF_HOME
-    os.environ["HF_MODULES_CACHE"]  = HF_MODULES_CACHE
+# Need this to be able to write cache on HF Space
+HF_HOME                         = "~/huggingface"
+HF_MODULES_CACHE                = HF_HOME + "/modules"
+os.environ["HF_HOME"]           = HF_HOME
+os.environ["HF_MODULES_CACHE"]  = HF_MODULES_CACHE
 
 import time
 import gradio as gr
