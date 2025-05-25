@@ -7,10 +7,11 @@ PROJECT_DIR = Path(__file__).parent.parent.parent
 sys.path.append(str(PROJECT_DIR))
 
 # Hugging Face space-specific setup
-HF_HOME                         = "/home/user/huggingface"
-HF_MODULES_CACHE                = HF_HOME + "/modules"
-os.environ["HF_HOME"]           = HF_HOME
-os.environ["HF_MODULES_CACHE"]  = HF_MODULES_CACHE
+if os.environ.get("USER") == "huggingface":
+    HF_HOME                         = "/home/user/huggingface"
+    HF_MODULES_CACHE                = HF_HOME + "/modules"
+    os.environ["HF_HOME"]           = HF_HOME
+    os.environ["HF_MODULES_CACHE"]  = HF_MODULES_CACHE
 
 from tqdm import tqdm
 from transformers import AutoModelForCausalLM, AutoProcessor
@@ -314,7 +315,8 @@ class FlorencePipeline():
 
         ## Line OD
         self.logger.info("Line detection")
-        page_line_od_output, page_line_imgs = self.line_od.run(image)
+        for i in tqdm(range(0, 1), total=1, unit="page", desc="Line detection"):
+            page_line_od_output, page_line_imgs = self.line_od.run(image)
 
         ## OCR
         self.logger.info("Text recognition")

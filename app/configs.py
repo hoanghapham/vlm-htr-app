@@ -31,7 +31,7 @@ css = """
 .textline {
   fill: transparent;
   stroke: transparent;
-  stroke-width: 8;
+  stroke-width: 7;
   stroke-opacity: 0.2;
 }
 
