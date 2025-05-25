@@ -4,6 +4,7 @@ from pathlib import Path
 PROJECT_DIR = Path(__file__).parent.parent
 sys.path.append(str(PROJECT_DIR))
 
+import os
 import time
 import gradio as gr
 import spaces
@@ -30,8 +31,12 @@ BATCH_SIZE = 2
 if not OUTPUT_CACHE_DIR.exists():
     OUTPUT_CACHE_DIR.mkdir(parents=True)
 
-logger = CustomLogger(__name__)
+os.environ["HF_HOME"] = "/home/user/huggingface"
+os.environ["GRADIO_CACHE_DIR"] = GRADIO_CACHE
 
+
+
+logger = CustomLogger(__name__)
 
 # Helper functions
 def render_image(image, image_path, lines):
