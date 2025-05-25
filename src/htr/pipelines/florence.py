@@ -6,6 +6,12 @@ from pathlib import Path
 PROJECT_DIR = Path(__file__).parent.parent.parent
 sys.path.append(str(PROJECT_DIR))
 
+# Hugging Face space-specific setup
+HF_HOME                         = "/home/user/huggingface"
+HF_MODULES_CACHE                = HF_HOME + "/modules"
+os.environ["HF_HOME"]           = HF_HOME
+os.environ["HF_MODULES_CACHE"]  = HF_MODULES_CACHE
+
 from tqdm import tqdm
 from transformers import AutoModelForCausalLM, AutoProcessor
 from PIL.Image import Image as PILImage

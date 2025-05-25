@@ -1,10 +1,19 @@
 #%%
 import sys
+import os
 from pathlib import Path
 PROJECT_DIR = Path(__file__).parent.parent
 sys.path.append(str(PROJECT_DIR))
 
-import os
+# Hugging Face space-specific setup
+HF_HOME             = "/home/user/huggingface"
+HF_MODULES_CACHE    = HF_HOME + "/modules"
+GRADIO_CACHE        = ".gradio"
+
+os.environ["HF_HOME"]           = HF_HOME
+os.environ["HF_MODULES_CACHE"]  = HF_MODULES_CACHE
+os.environ["GRADIO_CACHE_DIR"]  = GRADIO_CACHE
+
 import time
 import gradio as gr
 import spaces
@@ -23,19 +32,14 @@ _ENV = Environment(loader=FileSystemLoader(PROJECT_DIR / "app/assets/jinja_templ
 _IMAGE_TEMPLATE = _ENV.get_template("image")
 _TRANSCRIPTION_TEMPLATE = _ENV.get_template("transcription")
 
-HF_HOME             = "/home/user/huggingface"
-HF_MODULES_CACHE    = HF_HOME + "/modules"
-GRADIO_CACHE        = ".gradio"
-OUTPUT_CACHE_DIR    = GRADIO_CACHE + "/outputs"
 EXAMPLES_DIR        = Path(__file__).parent / "assets/examples"
+OUTPUT_CACHE_DIR    = GRADIO_CACHE + "/outputs"
 BATCH_SIZE = 2
 
 if not Path(OUTPUT_CACHE_DIR).exists():
     Path(OUTPUT_CACHE_DIR).mkdir(parents=True)
 
-os.environ["HF_HOME"]           = HF_HOME
-os.environ["GRADIO_CACHE_DIR"]  = GRADIO_CACHE
-os.environ["HF_MODULES_CACHE"]  = HF_MODULES_CACHE
+
 
 logger = CustomLogger(__name__)
 
