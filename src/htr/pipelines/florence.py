@@ -7,7 +7,7 @@ PROJECT_DIR = Path(__file__).parent.parent.parent
 sys.path.append(str(PROJECT_DIR))
 
 # Need this to be able to write cache on HF Space
-HF_HOME                         = "~/huggingface"
+HF_HOME                         = ".cache/huggingface"
 HF_MODULES_CACHE                = HF_HOME + "/modules"
 os.environ["HF_HOME"]           = HF_HOME
 os.environ["HF_MODULES_CACHE"]  = HF_MODULES_CACHE

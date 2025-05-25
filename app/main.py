@@ -7,7 +7,7 @@ PROJECT_DIR = Path(__file__).parent.parent
 sys.path.append(str(PROJECT_DIR))
 
 # Need this to be able to write cache on HF Space
-HF_HOME                         = "~/huggingface"
+HF_HOME                         = "./cache/huggingface"
 HF_MODULES_CACHE                = HF_HOME + "/modules"
 os.environ["HF_HOME"]           = HF_HOME
 os.environ["HF_MODULES_CACHE"]  = HF_MODULES_CACHE
@@ -68,8 +68,6 @@ def render_result(inputs: list[tuple[str, Page]]):
     image_out = render_image(Image.open(image), page.path, page.lines)
     text_out = render_transcription(page)
 
-    print("Compiled image_out:", image_out)
-
     return image_out, text_out
 
 
@@ -86,7 +84,6 @@ def get_examples() -> list[[tuple[Image.Image, str]]]:
 
 def get_selected_example(event: gr.SelectData) -> list[str]:
     """Get path to the selected example image."""
-    print("select event:", event.value)
     return [(event.value["image"]["path"], event.value["caption"])]
 
 
@@ -132,6 +129,7 @@ def run_htr_pipeline(
     DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
     if pipeline is None is None:
         progress(0.3, desc="Initiating pipeline...")
+        time.sleep(1)
         with suppress_stdout_stderr():
             pipeline = init_pipeline(device=DEVICE)
 
@@ -141,23 +139,25 @@ def run_htr_pipeline(
     if use_cache and cache_path.exists():
         progress(0.5, desc="Cache found, loading cache...")
         time.sleep(1)
-        page_data = Page.from_json(cache_path)
+        page = Page.from_json(cache_path)
     else:
         progress(0.5, desc="Transcribing...")
         time.sleep(1)
         logger.info(f"Processing {image_name}")
-        page_data = pipeline.run(Image.open(image_path).convert("RGB"))
+        page = pipeline.run(Image.open(image_path).convert("RGB"))
     
-        page_data.path = image_path  # Need to update file path to display the image later
-        page_data.to_json(cache_path)
-        logger.info(f"Done, saved result to {cache_path}")
+    # Save cache
+    # Need to update image path to path of the currently cached image to display later
+    page.path = image_path
+    page.to_json(cache_path)
+    logger.info(f"Done, saved result to {cache_path}")
     
     progress(1.0, desc="Done")
 
     gr.Info("Transcribing done, redirecting to output tab...")
     time.sleep(1)
 
-    new_outputs = outputs + [(image_path, page_data)]
+    new_outputs = outputs + [(image_path, page)]
     return new_outputs, pipeline
 
 
