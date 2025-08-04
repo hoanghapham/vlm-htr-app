@@ -18,13 +18,11 @@ import spaces
 import torch
 from PIL import Image
 from jinja2 import Environment, FileSystemLoader
-from src.file_tools import suppress_stdout_stderr
 
-
-from src.file_tools import list_files
-from src.htr.pipelines.florence import FlorencePipeline
-from src.data_types import Page
-from src.logger import CustomLogger
+from vlm.utils.file_tools import suppress_stdout_stderr, list_files
+from vlm.htr.pipelines.florence import FlorencePipeline
+from vlm.data_types import Page
+from vlm.utils.logger import CustomLogger
 from app.configs import css, theme
 
 #%%
@@ -136,8 +134,6 @@ def run_htr_pipeline(
     # Cache result from previous run
     cache_path = Path(OUTPUT_CACHE_DIR) / Path(image_name).with_suffix(".json")
 
-    print(use_cache)
-    
     if use_cache and cache_path.exists():
         progress(0.5, desc="Cache found, loading cache...")
         time.sleep(1)
