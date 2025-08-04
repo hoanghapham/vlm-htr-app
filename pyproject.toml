@@ -1,0 +1,26 @@
+[project]
+name = "app"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "hoanghapham", email = "hoangha.20021992@gmail.com" }
+]
+requires-python = ">=3.11"
+dependencies = [
+    "gradio>=5.39.0",
+    "jinja2>=3.1.6",
+    "pillow>=11.3.0",
+    "spaces>=0.39.0",
+    "vlm",
+]
+
+[project.scripts]
+app = "app:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.uv.sources]
+vlm = { git = "ssh://git@github.com/hoanghapham/vlm-htr" }
