@@ -161,19 +161,25 @@ name = "app"
 version = "0.1.0"
 source = { editable = "." }
 dependencies = [
+    { name = "einops" },
     { name = "gradio" },
     { name = "jinja2" },
     { name = "pillow" },
     { name = "spaces" },
+    { name = "timm" },
+    { name = "transformers" },
     { name = "vlm" },
 ]
 
 [package.metadata]
 requires-dist = [
+    { name = "einops", specifier = ">=0.8.1" },
     { name = "gradio", specifier = ">=5.39.0" },
     { name = "jinja2", specifier = ">=3.1.6" },
     { name = "pillow", specifier = ">=11.3.0" },
     { name = "spaces", specifier = ">=0.39.0" },
+    { name = "timm", specifier = ">=1.0.19" },
+    { name = "transformers", specifier = "==4.49.0" },
     { name = "vlm", git = "ssh://git@github.com/hoanghapham/vlm-htr" },
 ]
 
@@ -542,6 +548,15 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/17/4d/ac7ffa80c69ea1df30a8aa11b3578692a5118e7cd1aa157e3ef73b092d15/dill-0.3.8.tar.gz", hash = "sha256:3ebe3c479ad625c4553aca177444d89b486b1d84982eeacded644afc0cf797ca", size = 184847, upload-time = "2024-01-27T23:42:16.145Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/c9/7a/cef76fd8438a42f96db64ddaa85280485a9c395e7df3db8158cfec1eee34/dill-0.3.8-py3-none-any.whl", hash = "sha256:c36ca9ffb54365bdd2f8eb3eff7d2a21237f8452b57ace88b1ac615b7e815bd7", size = 116252, upload-time = "2024-01-27T23:42:14.239Z" },
+]
+
+[[package]]
+name = "einops"
+version = "0.8.1"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/e5/81/df4fbe24dff8ba3934af99044188e20a98ed441ad17a274539b74e82e126/einops-0.8.1.tar.gz", hash = "sha256:de5d960a7a761225532e0f1959e5315ebeafc0cd43394732f103ca44b9837e84", size = 54805, upload-time = "2025-02-09T03:17:00.434Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/87/62/9773de14fe6c45c23649e98b83231fffd7b9892b6cf863251dc2afa73643/einops-0.8.1-py3-none-any.whl", hash = "sha256:919387eb55330f5757c6bea9165c5ff5cfe63a642682ea788a6d472576d81737", size = 64359, upload-time = "2025-02-09T03:17:01.998Z" },
 ]
 
 [[package]]
@@ -3034,6 +3049,22 @@ wheels = [
 ]
 
 [[package]]
+name = "timm"
+version = "1.0.19"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "huggingface-hub" },
+    { name = "pyyaml" },
+    { name = "safetensors" },
+    { name = "torch" },
+    { name = "torchvision" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/1c/78/0789838cf20ba1cc09907914a008c1823d087132b48aa1ccde5e7934175a/timm-1.0.19.tar.gz", hash = "sha256:6e71e1f67ac80c229d3a78ca58347090514c508aeba8f2e2eb5289eda86e9f43", size = 2353261, upload-time = "2025-07-24T03:04:05.281Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/dc/74/661c63260cccf19ed5932e8b3f22f95ecd8bb34b9d9e6af9e1e7b961f254/timm-1.0.19-py3-none-any.whl", hash = "sha256:c07b56c32f3d3226c656f75c1b5479c08eb34eefed927c82fd8751a852f47931", size = 2497950, upload-time = "2025-07-24T03:04:03.097Z" },
+]
+
+[[package]]
 name = "tokenizers"
 version = "0.21.4"
 source = { registry = "https://pypi.org/simple" }
@@ -3156,7 +3187,7 @@ wheels = [
 
 [[package]]
 name = "transformers"
-version = "4.54.1"
+version = "4.49.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "filelock" },
@@ -3170,9 +3201,9 @@ dependencies = [
     { name = "tokenizers" },
     { name = "tqdm" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/21/6c/4caeb57926f91d943f309b062e22ad1eb24a9f530421c5a65c1d89378a7a/transformers-4.54.1.tar.gz", hash = "sha256:b2551bb97903f13bd90c9467d0a144d41ca4d142defc044a99502bb77c5c1052", size = 9514288, upload-time = "2025-07-29T15:57:22.826Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/79/50/46573150944f46df8ec968eda854023165a84470b42f69f67c7d475dabc5/transformers-4.49.0.tar.gz", hash = "sha256:7e40e640b5b8dc3f48743f5f5adbdce3660c82baafbd3afdfc04143cdbd2089e", size = 8610952, upload-time = "2025-02-17T15:19:03.614Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/cf/18/eb7578f84ef5a080d4e5ca9bc4f7c68e7aa9c1e464f1b3d3001e4c642fce/transformers-4.54.1-py3-none-any.whl", hash = "sha256:c89965a4f62a0d07009d45927a9c6372848a02ab9ead9c318c3d082708bab529", size = 11176397, upload-time = "2025-07-29T15:57:19.692Z" },
+    { url = "https://files.pythonhosted.org/packages/20/37/1f29af63e9c30156a3ed6ebc2754077016577c094f31de7b2631e5d379eb/transformers-4.49.0-py3-none-any.whl", hash = "sha256:6b4fded1c5fee04d384b1014495b4235a2b53c87503d7d592423c06128cbbe03", size = 9970275, upload-time = "2025-02-17T15:18:58.814Z" },
 ]
 
 [package.optional-dependencies]
@@ -3303,7 +3334,7 @@ wheels = [
 [[package]]
 name = "vlm"
 version = "0.1.0"
-source = { git = "ssh://git@github.com/hoanghapham/vlm-htr#4aaecd4095a2e7b7df7b469fc4f1715e08593c0a" }
+source = { git = "ssh://git@github.com/hoanghapham/vlm-htr#88f1f1ef3277ee133261eb762a8c255cef21eb97" }
 dependencies = [
     { name = "datasets" },
     { name = "htrflow" },
