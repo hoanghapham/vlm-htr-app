@@ -24,4 +24,39 @@ preload_from_hub:
 
 # HTR on Swedish Historical Manuscripts using Visual Language Model
 
-(TODO: Update README)
+## Installation guide
+
+Run the following commands:
+
+```bash
+# Install uv
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# Create a virtual environment with uv
+uv venv --python 3.11
+
+# Activate the virtual environment
+source .venv/bin/activate
+
+# Install packages (Recommended)
+uv sync
+
+# Or install using uv pip
+uv pip install -r requirements.txt
+```
+
+## Run locally
+
+```bash
+# Run using gradio
+gradio src/app/main.py
+
+# Run using python
+python src/app/main.py
+```
+
+## Deploy on HuggingFace Space
+(To be updated)
+
+## Run with Docker
+(To be updated)
