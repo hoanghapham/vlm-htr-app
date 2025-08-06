@@ -78,19 +78,14 @@ def run_htr_pipeline(
         time.sleep(1)
         logger.info(f"Processing {image_name}")
         content = PredictionInput(pipeline=Pipeline.FlorencePipeline, image_path=image_path)
-        try:
-            response = requests.post(PREDICT_ENDPOINT, json=content.model_dump())
-        except Exception as e:
-            print(e)
-            raise e
-    
-        # Save cache
-        # Need to update image path to path of the currently cached image to display later
+        response = requests.post(PREDICT_ENDPOINT, json=content.model_dump())
+        
         if response.status_code == 200:
             page = Page.from_dict(json.loads(response.text)["output"])
         else: 
             response.raise_for_status()
         
+        # Need to update image path to path of the currently cached image to display later
         page.path = image_path
         page.to_json(cache_path)
         logger.info(f"Done, saved result to {cache_path}")
