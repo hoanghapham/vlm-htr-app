@@ -1,5 +1,14 @@
+<!-- NOTE
+href="/gradio/gradio_api/file=..."
+
+This is because the gradio app is mounted on top of a fastapi app, 
+and the full path to the app is http://0.0.0.0:8000/gradio
+
+Typically if gradio serve as both the fronend and backend, we would launch the app at http://0.0.0.0:8000
+In this case, image files can be accessed with href="/gradio_api/files=..."
+ -->
 <svg viewBox="0 0 {{ image.width }} {{ image.height }}" xmlns="http://www.w3.org/2000/svg">
-    <image height="{{ image.height }}" width="{{ image.width }}" href="/gradio_api/file={{ image_path }}" />
+    <image height="{{ image.height }}" width="{{ image.width }}" href="/gradio/gradio_api/file={{ image_path }}" />
     {%- for line in lines -%}
         <a class="textline line{{loop.index}}" onmouseover="document.querySelectorAll('.line{{loop.index}}').forEach(element => {element.classList.add('highlighted')});" onmouseout="document.querySelectorAll('*').forEach(element => {element.classList.remove('highlighted')});">
         <polygon id="{{ loop.index }}" points="{% for point in line.polygon.boundary.coords %}{{ point|join(',') }}{% if not loop.last %} {% endif %}{% endfor %}"/></a>

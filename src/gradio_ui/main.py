@@ -1,217 +1,51 @@
 #%%
 import os
-import sys
+import uvicorn
+import gradio as gr
 from pathlib import Path
+from urllib.parse import urljoin
 
-PROJECT_DIR = Path(__file__).parent.parent
-sys.path.append(str(PROJECT_DIR))
+from gradio_ui.configs import css, theme
+from gradio_ui.tabs.submit import (
+    submit_block, 
+    input_images, 
+    examples, 
+    use_cache, 
+    run_btn, 
+    get_selected_example,
+    run_htr_pipeline
+)
+from gradio_ui.tabs.output import (
+    output_block, 
+    output_img, 
+    output_text, 
+    render_result
+)
+from backend.main import app
 
-# Need this to be able to write cache on HF Space
+
+# Set paths
+PROJECT_DIR                     = Path(__file__).parent.parent.parent
+GRADIO_CACHE_DIR                = PROJECT_DIR / ".gradio_cache"
 HF_HOME                         = ".cache/huggingface"
 HF_MODULES_CACHE                = HF_HOME + "/modules"
+
+EXAMPLES_DIR                    = Path(__file__).parent / "assets/examples"
+OUTPUT_CACHE_DIR                = GRADIO_CACHE_DIR / "outputs"
+
+os.environ["GRADIO_CACHE_DIR"]  = str(GRADIO_CACHE_DIR)
 os.environ["HF_HOME"]           = HF_HOME
 os.environ["HF_MODULES_CACHE"]  = HF_MODULES_CACHE
 
-import time
-import gradio as gr
-import spaces
-import torch
-from PIL import Image
-from jinja2 import Environment, FileSystemLoader
-
-from vlm.utils.file_tools import suppress_stdout_stderr, list_files
-from vlm.htr.pipelines.florence import FlorencePipeline
-from vlm.data_types import Page
-from vlm.utils.logger import CustomLogger
-from app.configs import css, theme
-
-#%%
-_ENV = Environment(loader=FileSystemLoader(PROJECT_DIR / "app/assets/jinja_templates"))
-_IMAGE_TEMPLATE = _ENV.get_template("image")
-_TRANSCRIPTION_TEMPLATE = _ENV.get_template("transcription")
-
-GRADIO_CACHE_DIR    = ".gradio_cache"
-EXAMPLES_DIR        = Path(__file__).parent / "assets/examples"
-OUTPUT_CACHE_DIR    = GRADIO_CACHE_DIR + "/outputs"
-BATCH_SIZE = 2
-
-os.environ["GRADIO_CACHE_DIR"]  = GRADIO_CACHE_DIR
 
 if not Path(OUTPUT_CACHE_DIR).exists():
     Path(OUTPUT_CACHE_DIR).mkdir(parents=True)
-
-
-logger = CustomLogger(__name__)
-
-# Helper functions
-def render_image(image, image_path, lines):
-    return _IMAGE_TEMPLATE.render(
-        image=image,
-        image_path=image_path,
-        lines=lines,
-    )
-
-
-def render_transcription(page: Page):
-    regions = page.regions
-    return _TRANSCRIPTION_TEMPLATE.render(regions=regions)
-
-
-def render_result(inputs: list[tuple[str, Page]]):
-    """Use image and page data to render HTML"""
-    # Currently only support displaying the last image processed
-    image: str  = inputs[-1][0]
-    page: Page  = inputs[-1][1]
-
-    image_out = render_image(Image.open(image), page.path, page.lines)
-    text_out = render_transcription(page)
-
-    return image_out, text_out
 
 
 def change_tab():
     """Navigate to output tab"""
     return gr.Tabs(selected=1)
 
-
-def get_examples() -> list[[tuple[Image.Image, str]]]:
-    """Get examples from assets folder"""
-    img_paths = list_files(EXAMPLES_DIR, extensions=[".jpg", ".png", ".tif"])
-    return [(Image.open(path), path.name) for path in img_paths]
-
-
-def get_selected_example(event: gr.SelectData) -> list[str]:
-    """Get path to the selected example image."""
-    return [(event.value["image"]["path"], event.value["caption"])]
-
-
-# Pipeline functions
-@spaces.GPU()
-def init_pipeline(device="cpu") -> FlorencePipeline:
-    """Initiate the pipeline"""
-    pipeline = FlorencePipeline(
-        pipeline_type       = "line_od__ocr",
-        line_od_model_path  = "nazounoryuu/florence_base__mixed__page__line_od",
-        ocr_model_path      = "nazounoryuu/florence_base__mixed__line_bbox__ocr",
-        batch_size          = BATCH_SIZE,
-        device              = device,
-        logger              = logger,
-    )
-    return pipeline
-
-
-@spaces.GPU()
-def run_htr_pipeline(
-    pipeline: FlorencePipeline | None, 
-    images: list[tuple], 
-    outputs: list, 
-    progress=gr.Progress(track_tqdm=True),
-    use_cache: bool = True
-):
-    """Run HTR Pipeline, with progress bar"""
-
-    # Currently support only one image
-    # TODO: iterate through images and run the pipeline
-    assert images is not None, "Please select at least one image"
-    image_path = images[-1][0]
-
-    if images[-1][1] is None:
-        image_name = Path(image_path).name
-    else:
-        image_name = images[-1][1]
-
-    progress(0.0, desc="Starting up...")
-    time.sleep(1)
-
-    # progress(0.3, desc="Loading pipeline...")
-    DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
-    if pipeline is None is None:
-        progress(0.3, desc="Initiating pipeline...")
-        time.sleep(1)
-        with suppress_stdout_stderr():
-            pipeline = init_pipeline(device=DEVICE)
-
-    # Cache result from previous run
-    cache_path = Path(OUTPUT_CACHE_DIR) / Path(image_name).with_suffix(".json")
-
-    if use_cache and cache_path.exists():
-        progress(0.5, desc="Cache found, loading cache...")
-        time.sleep(1)
-        page = Page.from_json(cache_path)
-    else:
-        progress(0.5, desc="Transcribing...")
-        time.sleep(1)
-        logger.info(f"Processing {image_name}")
-        page = pipeline.run(Image.open(image_path).convert("RGB"))
-    
-    # Save cache
-    # Need to update image path to path of the currently cached image to display later
-    page.path = image_path
-    page.to_json(cache_path)
-    logger.info(f"Done, saved result to {cache_path}")
-    
-    progress(1.0, desc="Done")
-
-    gr.Info("Transcribing done, redirecting to output tab...")
-    time.sleep(1)
-
-    new_outputs = outputs + [(image_path, page)]
-    return new_outputs, pipeline
-
-
-# Interfaces
-# Submit tab
-with gr.Blocks(title="submit") as submit:
-    with gr.Row():
-
-        input_images = gr.Gallery(
-            label="Input images",
-            file_types=["image"],
-            interactive=True,
-            object_fit="scale-down"
-        )
-        
-        with gr.Column():
-            examples = gr.Gallery(
-                label="Examples",
-                value=get_examples(),
-                show_label=False,
-                interactive=False,
-                allow_preview=False,
-                object_fit="scale-down",
-                min_width=250,
-                height="100%",
-                columns=4,
-                container=False,
-            )
-            # device = gr.Dropdown(choices=["cpu", "cuda"], label="Device", value="cpu", interactive=True)
-            use_cache = gr.Radio([True, False], label="Use cached result", value=True, interactive=True)
-            run_btn = gr.Button("Transcribe")
-
-# Output tab
-with gr.Blocks(title="output") as output:
-    with gr.Row():
-        with gr.Column(scale=2):
-            output_img = gr.HTML(
-                label="Annotated image",
-                padding=False,
-                elem_classes="svg-image",
-                container=True,
-                max_height="80vh",
-                min_height="80vh",
-                show_label=True,
-            )
-
-        with gr.Column(scale=1):
-            output_text = gr.HTML(
-                label="Transcription",
-                padding=False,
-                elem_classes="transcription",
-                container=True,
-                max_height="65vh",
-                min_height="65vh",
-                show_label=True
-            )
 
 # Main
 with gr.Blocks(
@@ -235,19 +69,16 @@ with gr.Blocks(
     """)
 
     # Setup output collection
-    outputs = gr.State([])
-
-    # Setup state object to store pipeline
-    pipeline = gr.State(None)
+    outputs_collection = gr.State([])
     
     # Tabs
     with gr.Tabs() as tabs:
 
         with gr.Tab(label="Input", id=0) as input_tab:
-            submit.render()
+            submit_block.render()
 
         with gr.Tab("Output", id=1) as output_tab:
-            output.render()
+            output_block.render()
 
     # Events
     # If selected an example, push it to input_images gallery
@@ -256,16 +87,27 @@ with gr.Blocks(
     # If click run, run the pipeline
     run_btn.click(
         fn=run_htr_pipeline,
-        inputs=[pipeline, input_images, outputs, use_cache],
-        outputs=[outputs, pipeline],
+        inputs=[input_images, outputs_collection, use_cache],
+        outputs=[outputs_collection],
         show_progress="full",
         show_progress_on=[input_images]
     )
 
     # When new result arrive, auto-navigate to output tab, and render result
-    outputs.change(change_tab, [], tabs)
-    outputs.change(render_result, inputs=outputs, outputs=[output_img, output_text])
+    outputs_collection.change(change_tab, [], tabs)
+    outputs_collection.change(render_result, inputs=outputs_collection, outputs=[output_img, output_text])
+
+
+# Setup app
+BACKEND_APP_URL                 = "http://0.0.0.0:8000"
+GRADIO_APP_PATH                 = "/gradio"
+GRADIO_APP_URL                  = urljoin(BACKEND_APP_URL, GRADIO_APP_PATH)
+
+# Mount gradio app on top of the fastapi app
+app = gr.mount_gradio_app(app, demo, path=GRADIO_APP_PATH, root_path=GRADIO_APP_PATH)
 
 
 if __name__ == "__main__":
-    demo.launch(server_name="0.0.0.0", server_port=7860, enable_monitoring=False, show_api=False)
+    # demo.launch(server_name="0.0.0.0", server_port=7860, enable_monitoring=False, show_api=False)
+    print(f"\nTo view the app, navigate to {GRADIO_APP_URL}\n")
+    uvicorn.run("gradio_ui.main:app", host="0.0.0.0", port=8000)
