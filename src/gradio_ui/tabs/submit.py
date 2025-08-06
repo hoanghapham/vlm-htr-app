@@ -7,7 +7,7 @@ import os
 import gradio as gr
 from pathlib import Path
 from urllib.parse import urljoin
-from dotenv import load_dotenv
+from dotenv import dotenv_values
 
 from PIL import Image
 from PIL.Image import Image as PILImage
@@ -17,13 +17,12 @@ from vlm.utils.logger import CustomLogger
 from utils.schemas import PredictionInput, Pipeline
 
 PROJECT_DIR         = Path(__file__).parent.parent.parent.parent
-load_dotenv(PROJECT_DIR / ".env")
 
 GRADIO_CACHE_DIR    = PROJECT_DIR / ".gradio_cache"
 OUTPUT_CACHE_DIR    = GRADIO_CACHE_DIR / "outputs"
 
 EXAMPLES_DIR        = Path(__file__).parent.parent / "assets/examples"
-BACKEND_APP_URL     = os.environ.get("BACKEND_APP_URL")
+BACKEND_APP_URL     = dotenv_values(PROJECT_DIR / ".env")["BACKEND_APP_URL"]
 PREDICT_ENDPOINT    = urljoin(BACKEND_APP_URL, "/predict")
 
 os.environ["GRADIO_CACHE_DIR"]  = str(GRADIO_CACHE_DIR)

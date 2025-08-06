@@ -1,9 +1,10 @@
 #%%
 import os
 import uvicorn
-import gradio as gr
+
 from pathlib import Path
 from urllib.parse import urljoin
+import gradio as gr
 
 from gradio_ui.configs import css, theme
 from gradio_ui.tabs.submit import (
@@ -22,7 +23,7 @@ from gradio_ui.tabs.output import (
     render_result
 )
 from backend.main import app
-from dotenv import load_dotenv
+from dotenv import dotenv_values
 
 
 # Set paths
@@ -38,7 +39,6 @@ os.environ["GRADIO_CACHE_DIR"]  = str(GRADIO_CACHE_DIR)
 os.environ["HF_HOME"]           = HF_HOME
 os.environ["HF_MODULES_CACHE"]  = HF_MODULES_CACHE
 
-load_dotenv(PROJECT_DIR / ".env")
 
 if not Path(OUTPUT_CACHE_DIR).exists():
     Path(OUTPUT_CACHE_DIR).mkdir(parents=True)
@@ -48,6 +48,13 @@ def change_tab():
     """Navigate to output tab"""
     return gr.Tabs(selected=1)
 
+
+def sync_gradio_object_state(input_value, target_state_value):
+    target_state_value = input_value
+    return target_state_value if target_state_value is not None else gr.skip()
+
+
+# gr.set_static_paths(paths=PROJECT_DIR / "src/gradio_ui/assets/examples")
 
 # Main
 with gr.Blocks(
@@ -101,9 +108,9 @@ with gr.Blocks(
 
 
 # Setup app
-BACKEND_APP_URL                 = os.environ.get("BACKEND_APP_URL")
-GRADIO_APP_PATH                 = "/gradio"
-GRADIO_APP_URL                  = urljoin(BACKEND_APP_URL, GRADIO_APP_PATH)
+BACKEND_APP_URL     = dotenv_values(PROJECT_DIR / ".env")["BACKEND_APP_URL"]
+GRADIO_APP_PATH     = "/gradio"
+GRADIO_APP_URL      = urljoin(BACKEND_APP_URL, GRADIO_APP_PATH)
 
 # Mount gradio app on top of the fastapi app
 app = gr.mount_gradio_app(app, demo, path=GRADIO_APP_PATH, root_path=GRADIO_APP_PATH)
