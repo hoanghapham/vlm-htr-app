@@ -7,6 +7,7 @@ import os
 import gradio as gr
 from pathlib import Path
 from urllib.parse import urljoin
+from urllib.error import HTTPError
 
 from PIL import Image
 from PIL.Image import Image as PILImage
@@ -77,14 +78,18 @@ def run_htr_pipeline(
         time.sleep(1)
         logger.info(f"Processing {image_name}")
         content = PredictionInput(pipeline=Pipeline.FlorencePipeline, image_path=image_path)
-        response = requests.post(PREDICT_ENDPOINT, json=content.model_dump())
+        try:
+            response = requests.post(PREDICT_ENDPOINT, json=content.model_dump())
+        except Exception as e:
+            print(e)
+            raise e
     
         # Save cache
         # Need to update image path to path of the currently cached image to display later
         if response.status_code == 200:
             page = Page.from_dict(json.loads(response.text)["output"])
         else: 
-            return None
+            response.raise_for_status()
         
         page.path = image_path
         page.to_json(cache_path)
