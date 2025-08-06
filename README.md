@@ -4,7 +4,7 @@ sdk: gradio
 sdk_version: 5.30.0
 python_version: 3.10.13
 suggested_hardware: t4-small
-app_file: app/main.py
+app_file: src/gradio_ui/main.py
 models:
     - nazounoryuu/florence_base__mixed__page__line_od
     - nazounoryuu/florence_base__mixed__line_bbox__ocr
