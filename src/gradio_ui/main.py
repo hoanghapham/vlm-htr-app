@@ -22,6 +22,7 @@ from gradio_ui.tabs.output import (
     render_result
 )
 from backend.main import app
+from dotenv import load_dotenv
 
 
 # Set paths
@@ -37,6 +38,7 @@ os.environ["GRADIO_CACHE_DIR"]  = str(GRADIO_CACHE_DIR)
 os.environ["HF_HOME"]           = HF_HOME
 os.environ["HF_MODULES_CACHE"]  = HF_MODULES_CACHE
 
+load_dotenv(PROJECT_DIR / ".env")
 
 if not Path(OUTPUT_CACHE_DIR).exists():
     Path(OUTPUT_CACHE_DIR).mkdir(parents=True)
@@ -99,7 +101,7 @@ with gr.Blocks(
 
 
 # Setup app
-BACKEND_APP_URL                 = "http://0.0.0.0:8000"
+BACKEND_APP_URL                 = os.environ.get("BACKEND_APP_URL")
 GRADIO_APP_PATH                 = "/gradio"
 GRADIO_APP_URL                  = urljoin(BACKEND_APP_URL, GRADIO_APP_PATH)
 
